@@ -1,5 +1,5 @@
 import React from "react";
-import { NewpostText, NewpostLeft, ContainerStyle, TitleRightStyle, ImgRightStyle, TitleLeftStyle, ImgLeftStyle, BgImgStyle } from "../style/blogStyle";
+import { NewpostText, NewpostLeft, ContainerStyle, TitleRightStyle, ImgRightStyle, TitleLeftStyle, ImgLeftStyle, BgImgStyle } from "../styles/blogStyle";
 import { Button } from "antd";
 import { NavLink } from "react-router-dom";
 
