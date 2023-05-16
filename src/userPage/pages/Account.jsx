@@ -30,7 +30,7 @@ const Account = () => {
         <div>
         <section>
             <div className="container">
-                <div className="row mt-3">
+                <div className="row mt-3 mb-5">
                     <div className="col-3"></div>
                     <ContentStyle className="col-6 mt-3 content-acc">
                         <h1 style={{
