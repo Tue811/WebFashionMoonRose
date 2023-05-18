@@ -27,6 +27,10 @@ export const ChoiceStyle = styled.div`
         color: black;
         text-decoration: none;
     }
+    button{
+        border-radius: 20px;
+        padding:5px 25px;
+    }
   
 `;
 
