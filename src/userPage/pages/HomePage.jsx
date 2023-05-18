@@ -20,6 +20,7 @@ import Slider from "react-slick";
 import CartProduct from "../components/CartProduct";
 import { Link } from "react-router-dom";
 import EvaluateComponent from "../components/EvaluateComponent";
+import banner from "../assets/img/banner.jpg"
 
 const HomePage = () => {
   const settings = {
@@ -37,6 +38,7 @@ const HomePage = () => {
       
       <ContentLayout>
         <Banner>
+          <Row>
           <Col span={12}>
             <h1>Moon Rose</h1>
             <p>
@@ -45,6 +47,10 @@ const HomePage = () => {
             </p>
             <Btn text="Mua sắm ngay"></Btn>
           </Col>
+          <Col span={12}>
+          <img style={{width: "100%"}} src={banner}/>
+          </Col>
+          </Row>
         </Banner>
         <Trending>
             <h3>Trending</h3>

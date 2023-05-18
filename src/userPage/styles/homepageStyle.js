@@ -23,13 +23,14 @@ h3{
 `
 
 export const Banner = styled.div`
-padding-top:150px;
-height: 500px;
+/* height: 500px; */
     text-align: center;
   p{
     font-size: 20px;
   }
     h1{
+padding-top:150px;
+
         font-family: 'ginger';
         font-size: 52px;
         margin: 0;
@@ -79,7 +80,7 @@ export const ContentSales = styled.div`
   }
 
   h1{
-    color: black;
+    color: #DABAAD;
     font-size: 150px;
   }
 
