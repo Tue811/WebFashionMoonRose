@@ -7,6 +7,10 @@ export const RightStyle = styled.div`
 export const ContentStyle = styled.div`
     border-radius: 10px;
     border: none;
+    .right{
+      background-color: #DABAAD;
+      border-radius: 20px;
+    }
 `;  
 export const LeftStyle = styled.div`
   border: 1px solid rgb(192, 187, 187);
