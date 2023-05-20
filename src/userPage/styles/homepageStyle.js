@@ -9,7 +9,7 @@ export const ContentLayout = styled(Content)`
   font-family: 'ginger';
   font-weight: normal;
   font-style: normal;
-  src: url('./font/Ginger/SVN-Ginger.otf') format('truetype');
+  src: url('/WebFashionMoonRose/public/font/Ginger/SVN-Ginger.otf') format('truetype');
   font-display: swap;
 }
 
@@ -23,13 +23,16 @@ h3{
 `
 
 export const Banner = styled.div`
+img{
+  padding-top:100px;
+  width: 300px;
+}
 /* height: 500px; */
     text-align: center;
   p{
     font-size: 20px;
   }
     h1{
-padding-top:150px;
 
         font-family: 'ginger';
         font-size: 52px;

@@ -12,6 +12,7 @@ import PersonalInfo from "./userPage/components/PersonalInfo";
 import ChangePass from "./userPage/components/ChangePass";
 import Account from "./userPage/pages/Account";
 import Blog from "../src/userPage/components/Blog";
+import Contact from "./userPage/pages/Contact";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
         <Route path="/about" element={<AboutUs />}></Route>
         <Route path="/account" element={<Account />}></Route>
         <Route path="/blog" element={<Blog />} />
+        <Route path="/contact" element={<Contact />} />
       </Routes>
       <Footer />
     </>

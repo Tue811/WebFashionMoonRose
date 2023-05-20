@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 // import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
-import logo from "../assets/img/logowebclothing.png";
+import logo from "../../assets/img/logowebclothing.png";
 import { HeaderLayout, Logo, NavHeader } from "../styles/headerStyle";
 import { Col, Row, Badge,Input  } from "antd";
 import { ShoppingCartOutlined, UserOutlined ,SearchOutlined,HeartOutlined} from "@ant-design/icons";

@@ -1,8 +1,7 @@
 import React from "react";
 import { FooterItem, FooterLayout } from "../styles/footerStyle";
 import { Col, Row } from "antd";
-import logo from "../assets/img/logowebclothing.png";
-import logoRemoveBg from "../assets/img/[removal.ai]_a0e35e30-2f95-435e-932d-f1d7b55cc41f.png"
+import logoRemoveBg from "../../assets/img/logo.png";
 import { Link } from "react-router-dom";
 const Footer = () => {
   return (
