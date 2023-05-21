@@ -1,4 +1,9 @@
 import "./App.css";
+import "swiper/css";
+import "swiper/css/pagination";
+import "swiper/css/navigation";
+import "swiper/css/autoplay";
+
 // import Login fro
 import { Routes, Route } from "react-router-dom";
 // import Register from './pages/Register';

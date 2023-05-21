@@ -19,6 +19,7 @@
     "react-snap-carousel": "^0.3.1",
     "slick-carousel": "^1.8.1",
     "styled-components": "^5.3.10",
+    "swiper": "^9.3.2",
     "web-vitals": "^2.1.4"
   },
   "scripts": {

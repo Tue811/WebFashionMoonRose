@@ -3,8 +3,11 @@ import { Header } from "antd/es/layout/layout";
 import styled from "styled-components";
 
 export const HeaderLayout=styled(Header)`
-    background-color: rgba(0,0,0,0);
+    background-color: white;
     color: #333333;
+    height: max-content;
+    padding-top: 20px;
+    z-index: 1;
     a{
         padding: 20px 20px;
         color: #333333;
@@ -19,5 +22,11 @@ export const Logo=styled(Col)`
 `
 
 export const NavHeader=styled.div`
-    
+    a{
+        text-decoration: none;
+        font-size: 18px;
+        &:hover{
+            text-decoration: solid;
+        }
+    }
 `

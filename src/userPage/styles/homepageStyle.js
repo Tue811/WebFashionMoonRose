@@ -1,6 +1,7 @@
 import { Content } from "antd/es/layout/layout";
 import Slider from "react-slick";
 import styled from "styled-components";
+import { SwiperSlide } from "swiper/react";
 
 export const ContentLayout = styled(Content)`
     padding:0 50px;
@@ -96,5 +97,17 @@ export const ContentSales = styled.div`
 
 export const GeneralComment = styled.div`
 
+`
+
+export const SlideItem = styled(SwiperSlide)`
+
+height: 300px;
+width: 200px;
+border-radius: 20px;
+color: white;
+text-align: center;
+padding-top: 200px;
+font-size: 36px;
+font-weight: bold;
 `
 
