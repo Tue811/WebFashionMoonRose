@@ -16,9 +16,12 @@ export const ContentLayout = styled(Content)`
 
 h3{
   text-align: center;
-  font-size: 42px;
+  font-size: 36px;
   font-weight: 900;
   margin: 40px 0;
+}
+p{
+  font-size: 16px;
 }
 
 `
@@ -101,13 +104,13 @@ export const GeneralComment = styled.div`
 
 export const SlideItem = styled(SwiperSlide)`
 
-height: 300px;
+height: 200px;
 width: 200px;
 border-radius: 20px;
 color: white;
 text-align: center;
-padding-top: 200px;
-font-size: 36px;
+padding-top: 120px;
+font-size: 24px;
 font-weight: bold;
 `
 

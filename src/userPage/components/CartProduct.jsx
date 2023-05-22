@@ -26,11 +26,13 @@ const CartProduct = () => {
         <Typography style={{
             display:"flex",
             justifyContent:"space-between",
-            alignItems:"center"
+            alignItems:"center",
+            fontSize: 16
         }}>
-         <h4>Slip Dress</h4>
+         <b>Slip Dress</b>
          <Rate disabled defaultValue={2.5} style={{
              margin:0,
+             fontSize: 16
             //  color: "#DABAAD"
              }} />
         </Typography>
@@ -44,7 +46,7 @@ const CartProduct = () => {
         >
             <b style={{
                 fontWeight:900,
-                fontSize: "24px"
+                fontSize: "18px"
             }}>$50</b>
             <Button
             style={{backgroundColor:"#DABAAD", color:"white"}}
