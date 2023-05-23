@@ -44,7 +44,7 @@ const Blog = () => {
                   Nhìn cuộc sống với đôi mắt của một đứa trẻ
                 </h1>
                 <NavLink to={"/blogdetail"}>
-                  <Button type="text"> Xem bài viết</Button>
+                  <Button type="text" > Xem bài viết</Button>
                 </NavLink>
                 <span> 3 phút đọc</span>
               </TitleRightStyle>
@@ -58,7 +58,9 @@ const Blog = () => {
                   Tuổi, bạn sẽ hỏi, những điều này là nhỏ. Đối với họ sau đó tự
                   quay lại. Tiến bộ để dạy anh ấy, chúng tôi rất đáng ngưỡng mộ.
                 </p>
-                <Button type="text">Xem bài viết</Button>
+                <NavLink to={"/blogdetail"}>
+                  <Button type="text" > Xem bài viết</Button>
+                </NavLink>
                 <span> 9 phút đọc</span>
               </TitleLeftStyle>
               <ImgRightStyle className="col-6 ">
