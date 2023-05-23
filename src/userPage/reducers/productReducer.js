@@ -1,5 +1,5 @@
-import { LISTPRODUCTS } from "../../contants/productsContants";
-
+import {LISTPRODUCTS} from "../contants/productsContants"
+import { db } from '../../db'
 
 const initialState = {
     product:[],

@@ -66,6 +66,8 @@ const HomePage = () => {
   //   swiperRef.slideTo(index - 1, 0);
   // };
 
+  
+
   return (
     <div>
       <ContentLayout>
@@ -78,7 +80,7 @@ const HomePage = () => {
                 Chúng tôi luôn đặt nhu cầu và mong muốn của khách hàng lên hàng
                 đầu
               </p>
-              <Btn text="Mua sắm ngay"></Btn>
+              <Link to="/products"><Btn text="Mua sắm ngay"></Btn></Link>
             </Col>
             <Col span={12}>
               <img style={{ width: "100%", padding: 0 }} src={banner} />

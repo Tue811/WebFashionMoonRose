@@ -18,6 +18,7 @@ import ChangePass from "./userPage/components/ChangePass";
 import Account from "./userPage/pages/Account";
 import Blog from "../src/userPage/components/Blog";
 import Contact from "./userPage/pages/Contact";
+import Login from "./userPage/pages/Login"
 
 function App() {
   return (
