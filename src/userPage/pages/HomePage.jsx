@@ -66,7 +66,7 @@ const HomePage = () => {
   //   swiperRef.slideTo(index - 1, 0);
   // };
 
-  
+
 
   return (
     <div>
@@ -192,6 +192,7 @@ const HomePage = () => {
           </Row>
         </GeneralComment>
       </ContentLayout>
+      
     </div>
   );
 };
