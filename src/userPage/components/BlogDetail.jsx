@@ -14,7 +14,7 @@ import {
 const BlogDetail = () => {
   return (
     <section>
-      <div className="container">
+      <div className="container mt-5">
         <TitleHeadStyle className="row mb-5">
           <div className="col-6">
             <TitleStyle className="box-title">
