@@ -4,7 +4,7 @@ import {
   TitleStyle,
   TitleHeadStyle,
   TitleFooterStyle,
-} from "../style/blogdetailStyle";
+} from "../styles/blogdetailStyle";
 import { Button } from "antd";
 import {
   FacebookOutlined,
