@@ -17,6 +17,7 @@ import PersonalInfo from "./userPage/components/PersonalInfo";
 import ChangePass from "./userPage/components/ChangePass";
 import Account from "./userPage/pages/Account";
 import Blog from "../src/userPage/components/Blog";
+import BlogDetail from "./userPage/components/BlogDetail";
 import Contact from "./userPage/pages/Contact";
 import Login from "./userPage/pages/Login"
 
@@ -34,6 +35,8 @@ function App() {
         <Route path="/account" element={<Account />}></Route>
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/blogdetail" element={<BlogDetail />} />
+
       </Routes>
       <Footer />
     </>
