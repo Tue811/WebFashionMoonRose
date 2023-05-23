@@ -18,6 +18,8 @@ import ChangePass from "./userPage/components/ChangePass";
 import Account from "./userPage/pages/Account";
 import Blog from "../src/userPage/components/Blog";
 import Contact from "./userPage/pages/Contact";
+import Cart from "../src/userPage/components/Cart";
+
 
 function App() {
   return (
@@ -33,6 +35,8 @@ function App() {
         <Route path="/account" element={<Account />}></Route>
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
+        <Route path="/cart" element={<Cart />} />
+
       </Routes>
       <Footer />
     </>
