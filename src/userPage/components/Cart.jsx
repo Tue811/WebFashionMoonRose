@@ -8,6 +8,7 @@ import {
   ContentStyle,
   SelectStyle,
 } from "../styles/cartStyle";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   return (
@@ -143,10 +144,10 @@ const Cart = () => {
 
                               <div class="pt-5">
                                 <h6 class="mb-0">
-                                  <a href="#!" class="text-body">
+                                  <Link to={"/"} class="text-body">
                                     <i class="fas fa-long-arrow-alt-left me-2"></i>
                                     Trở về trang chủ
-                                  </a>
+                                  </Link>
                                 </h6>
                               </div>
                             </div>
