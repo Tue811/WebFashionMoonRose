@@ -19,7 +19,8 @@ import Account from "./userPage/pages/Account";
 import Blog from "../src/userPage/components/Blog";
 import BlogDetail from "./userPage/components/BlogDetail";
 import Contact from "./userPage/pages/Contact";
-import Login from "./userPage/pages/Login"
+import Login from "./userPage/pages/Login";
+import Cart from "./userPage/components/Cart";
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/blog" element={<Blog />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/blogdetail" element={<BlogDetail />} />
+        <Route path="/cart" element={<Cart />} />
 
       </Routes>
       <Footer />
