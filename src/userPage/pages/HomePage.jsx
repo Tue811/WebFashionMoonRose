@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
 import {
@@ -25,24 +25,20 @@ import banner from "../../assets/img/banner.jpg";
 import logo from "../../assets/img/logowebclothing.png";
 import SwiperCore, { Virtual, Navigation, Pagination , Autoplay} from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { connect, useDispatch } from "react-redux";
+import { listProducts, listCategories, addCart } from "../actions/productAction";
+import db from '../../db'
+import { ADDCART } from "../contants/productsContants";
 
 // // Import Swiper styles
 
-const HomePage = () => {
-  const settings = {
-    dots: true,
-    infinite: true,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    autoplay: true,
-    speed: 2000,
-    autoplaySpeed: 2000,
-    cssEase: "linear",
-  };
+const HomePage = (props) => {
 
   const [swiperRef, setSwiperRef] = useState(null);
   const appendNumber = useRef(500);
   const prependNumber = useRef(1);
+  const [products, setProducts]=useState([]);
+  const [categories, setCategories] = useState([])
   // Create array with 500 slides
   // const [slides, setSlides] = useState(
   //   Array.from({ length: 500 }).map((_, index) => `Slide ${index + 1}`)
@@ -66,7 +62,33 @@ const HomePage = () => {
   //   swiperRef.slideTo(index - 1, 0);
   // };
 
+const dispatch=useDispatch();
 
+useEffect(()=>{
+  refresh();
+  getListCategories()
+},[])
+
+const refresh=async()=>{
+  const t=await listProducts(8);
+
+  setProducts(t)
+
+
+}
+
+const getListCategories =async()=>{
+  const c = await listCategories();
+  setCategories(c)
+}
+
+ const addToCart=(e)=>{
+  const cart=props.cart; 
+   cart.push(e)
+   console.log(props)
+   props.add_cart(cart)
+  // dispatch({type: ADDCART, payload: cart})
+ }
 
   return (
     <div>
@@ -102,67 +124,41 @@ const HomePage = () => {
             // navigation={true}
           >
             {/* {slides.map((slideContent, index) => ( */}
-            <SlideItem style={{
-               background: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://i.pinimg.com/564x/18/e6/f3/18e6f337b150eb7f37d9e725b9f944a5.jpg)",
-               backgroundSize:"100% "
-            }}>
-              Babydoll Dress
-            </SlideItem>
-            <SlideItem style={{
-               background: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://i.pinimg.com/564x/52/d3/4c/52d34cecfaea58ad65945f93a4ee35ce.jpg)",
-               backgroundSize:"100% "
-            }}>
-              Polo Dress
-            </SlideItem>
-            <SlideItem style={{
-               background: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://i.pinimg.com/564x/52/d3/4c/52d34cecfaea58ad65945f93a4ee35ce.jpg)",
-               backgroundSize:"100% "
-            }}>
-              Shirt Dress
-            </SlideItem>
-            <SlideItem style={{
-               background: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://i.pinimg.com/564x/52/d3/4c/52d34cecfaea58ad65945f93a4ee35ce.jpg)",
-               backgroundSize:"100% "
-            }}>
-              Blazer
-            </SlideItem>
-            <SlideItem style={{
-               background: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://i.pinimg.com/564x/52/d3/4c/52d34cecfaea58ad65945f93a4ee35ce.jpg)",
-               backgroundSize:"100% "
-            }}>
-              T-Shirt
-            </SlideItem>
-            <SlideItem style={{
-               background: "linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://i.pinimg.com/564x/52/d3/4c/52d34cecfaea58ad65945f93a4ee35ce.jpg)",
-               backgroundSize:"100% "
-            }}>
-            </SlideItem>
-
-            {/* ))} */}
+           {
+             categories.map((e,k)=>{
+              return(
+                <SlideItem key={k} style={{
+                  background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${e.thumbnail})`,
+                  backgroundSize:"100% "
+               }}>
+                 {e.name}
+               </SlideItem>
+              )
+             })
+           }
+          
           </Swiper>
         </Trending>
         <Collection>
           <h3>New Best Collection</h3>
           <ListProducts>
             <Row>
-              <Col span={8}>
-                <CartProduct />
-              </Col>
-              <Col span={8}>
-                <CartProduct />
-              </Col>
-              <Col span={8}>
-                <CartProduct />
-              </Col>
-              <Col span={8}>
-                <CartProduct />
-              </Col>
-              <Col span={8}>
-                <CartProduct />
-              </Col>
-              <Col span={8}>
-                <CartProduct />
-              </Col>
+             {
+               products.map((e,k) => {
+                return(
+                  <Col key={k} span={6}>
+            
+                  <CartProduct 
+                  name={e.name}
+                  price={e.finalprice}
+                  src={e.thumbnail}
+                  addToCart={()=>addToCart(e)}
+                  />
+                
+                </Col>
+                )
+              })
+             }
             </Row>
           </ListProducts>
           <Link to="/">View All</Link>
@@ -197,4 +193,19 @@ const HomePage = () => {
   );
 };
 
-export default HomePage;
+const mapDispatchToProps = dispatch => {
+  return {
+    getData: () => dispatch({type:'LISTPRODUCTS'}),
+    add_cart: (cart)=> 
+     dispatch({type :"ADDCART", payload : cart})
+  }
+}
+const mapStateToProps = (state, ownProps) => {
+  return {
+    cart :  state.userReducer.cart,
+    // price: state.product.price,
+    // qty: state.product.qty,
+
+  }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage);

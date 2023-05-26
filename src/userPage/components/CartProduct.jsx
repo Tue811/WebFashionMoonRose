@@ -3,25 +3,32 @@ import { Button, Card, Rate, Typography } from "antd";
 import Btn from "./Btn";
 import { Link } from "react-router-dom";
 import {PlusOutlined} from '@ant-design/icons';
+import { useDispatch } from "react-redux";
 const { Meta } = Card;
-const CartProduct = () => {
+const CartProduct = ({src,name,price,addToCart}) => {
+
   return (
     <div>
       <Card
         hoverable
         style={{
         //   width: 240,
-        margin:"20px"
+        margin:"20px",  
         }}
-        cover={
-            <img
-            alt="Ảnh sản phẩm"
-            src="https://i.pinimg.com/564x/c2/a3/f6/c2a3f6b9fe3f2a8f84b017e74645ce80.jpg"
-            style={{height:280}}
-          />
-        }
+
         
       >
+
+       <Link to="/product-detail">
+            <img
+            alt="Ảnh sản phẩm"
+            src={src}
+            style={{height:300,
+            width:"100%"
+            }}
+          />
+           </Link>
+
         
         <Typography style={{
             display:"flex",
@@ -29,7 +36,7 @@ const CartProduct = () => {
             alignItems:"center",
             fontSize: 16
         }}>
-         <b>Slip Dress</b>
+         <b>{name}</b>
          <Rate disabled defaultValue={2.5} style={{
              margin:0,
              fontSize: 16
@@ -47,9 +54,10 @@ const CartProduct = () => {
             <b style={{
                 fontWeight:900,
                 fontSize: "18px"
-            }}>$50</b>
+            }}>{price}/</b>
             <Button
             style={{backgroundColor:"#DABAAD", color:"white"}}
+            onClick={addToCart}
             >
                 <PlusOutlined />
             </Button>
