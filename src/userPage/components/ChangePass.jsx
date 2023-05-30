@@ -1,8 +1,8 @@
 import React from "react";
 import { ContentStyle } from "../styles/changepassStyle";
 
-export default class ChangePass extends React.Component {
-    render() {
+const ChangePass =()=> {
+    
         return (
             <div className="row">
                 <div className="col-4"></div>
@@ -24,5 +24,6 @@ export default class ChangePass extends React.Component {
                 <div className="col-4"></div>
             </div>
         );
-    }
+    
 }
+export default ChangePass;
