@@ -26,7 +26,7 @@ import logo from "../../assets/img/logowebclothing.png";
 import SwiperCore, { Virtual, Navigation, Pagination , Autoplay} from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { connect, useDispatch } from "react-redux";
-import { listProducts, listCategories, addCart } from "../actions/productAction";
+import { listProducts, listCategories, addCart } from "../services/productAction";
 import db from '../../db'
 import { ADDCART } from "../contants/productsContants";
 
@@ -193,19 +193,4 @@ const getListCategories =async()=>{
   );
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    getData: () => dispatch({type:'LISTPRODUCTS'}),
-    add_cart: (cart)=> 
-     dispatch({type :"ADDCART", payload : cart})
-  }
-}
-const mapStateToProps = (state, ownProps) => {
-  return {
-    cart :  state.userReducer.cart,
-    // price: state.product.price,
-    // qty: state.product.qty,
-
-  }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(HomePage);
+export default HomePage;

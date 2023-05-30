@@ -3,7 +3,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
-
+import React, { useEffect, useReducer, useState } from "react";
 // import Login fro
 import { Routes, Route } from "react-router-dom";
 // import Register from './pages/Register';
@@ -21,10 +21,17 @@ import BlogDetail from "./userPage/components/BlogDetail";
 import Contact from "./userPage/pages/Contact";
 import Login from "./userPage/pages/Login";
 import Cart from "./userPage/components/Cart";
+import UserProvider from './userPage/context/UserContext'
+import store from "./userPage/context/store";
+import reducer from './userPage/context/productReducer'
 
 function App() {
+  const localState = localStorage.getItem("state")
+  ?JSON.parse(localStorage.getItem("state"))
+  :store;
+const [state,dispatch] = useReducer(reducer,localState);
   return (
-    <>
+    <UserProvider value={{state,dispatch}}>
       <Header />
       <Routes>
         {/* <Route path='/login' element={<Login/>}></Route> */}
@@ -41,7 +48,7 @@ function App() {
 
       </Routes>
       <Footer />
-    </>
+      </UserProvider>
   );
 }
 
