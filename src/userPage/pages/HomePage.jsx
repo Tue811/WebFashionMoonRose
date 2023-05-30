@@ -29,6 +29,7 @@ import { connect, useDispatch } from "react-redux";
 import { listProducts, listCategories, addCart } from "../services/productAction";
 import db from '../../db'
 import { ADDCART } from "../contants/productsContants";
+import UserContext from '../context/UserContext'
 
 // // Import Swiper styles
 
@@ -81,13 +82,34 @@ const getListCategories =async()=>{
   const c = await listCategories();
   setCategories(c)
 }
+const {state,dispatch} = React.useContext(UserContext);
 
- const addToCart=(e)=>{
-  const cart=props.cart; 
-   cart.push(e)
-   console.log(props)
-   props.add_cart(cart)
+ const addToCart=(product, index)=>{
+  // const cart=props.cart; 
+  //  cart.push(e)
+  //  console.log(props)
+  //  props.add_cart(cart)
   // dispatch({type: ADDCART, payload: cart})
+  console.log(product);
+  let check = false;
+        state.cart.map((e, index)=>{
+          console.log(e)
+            if(e.index == index){
+                e.qty = e.qty+1;
+                check =  true;    
+            }
+            return e;
+        })
+        if(check== false){
+            product.qty = 1;
+            state.cart.push(product);
+        }
+        dispatch({type:"update_cart",payload:state.cart});
+        setTimeout(()=>{
+            dispatch({type:"hide_loading"});
+        },1000);
+        
+        localStorage.setItem("state",JSON.stringify(state)); 
  }
 
   return (
@@ -152,7 +174,7 @@ const getListCategories =async()=>{
                   name={e.name}
                   price={e.finalprice}
                   src={e.thumbnail}
-                  addToCart={()=>addToCart(e)}
+                  addToCart={()=>addToCart(e,k)}
                   />
                 
                 </Col>

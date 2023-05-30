@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 // import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/img/logowebclothing.png";
 import { HeaderLayout, Logo, NavHeader } from "../styles/headerStyle";
 import { Col, Row, Badge,Input  } from "antd";
 import { ShoppingCartOutlined, UserOutlined ,SearchOutlined,HeartOutlined} from "@ant-design/icons";
+import UserContext from "../context/UserContext";
+
 
 const Header = () => {
   // const countHeart = useSelector((state) => state.counter.value);
@@ -12,6 +14,7 @@ const Header = () => {
   // const numberProductCart = useSelector((state) => state.counter.totalQuantity);
   const [navbar, setNavbar] = useState(false);
   const [showSearch, setShowSearch]=useState(false)
+  const {state,dispatch} = useContext(UserContext);
   const changeHeader = () => {
     if (window.scrollY >= 80) {
       setNavbar(true);
@@ -49,7 +52,7 @@ const Header = () => {
         <SearchOutlined onClick={handleSearch}  style={{ fontSize: "25px" }} />
           <NavLink to={"/cart"}>
             <Badge
-              count={3}
+              count={state.cart.length}
               offset={[10, 10]}
               size="small"
               style={{

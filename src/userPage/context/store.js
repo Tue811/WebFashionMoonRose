@@ -1,7 +1,6 @@
 const store ={
-    // cart:[],
-    // search:"",
-    // favourite:[],
+    cart:[],
+    favourite:[],
 
 }
 

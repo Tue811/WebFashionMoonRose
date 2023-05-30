@@ -18,7 +18,7 @@ function userReducer(state = initialState, action){
             // console.log(action)
             return{
                 ...state,
-                cart: action.payload
+                cart: state.cart
             }
         }
      
