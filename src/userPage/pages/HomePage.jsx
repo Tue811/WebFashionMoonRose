@@ -62,7 +62,7 @@ const HomePage = (props) => {
   //   swiperRef.slideTo(index - 1, 0);
   // };
 
-const dispatch=useDispatch();
+// const dispatch=useDispatch();
 
 useEffect(()=>{
   refresh();

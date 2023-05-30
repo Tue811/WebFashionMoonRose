@@ -31,7 +31,8 @@ function App() {
   :store;
 const [state,dispatch] = useReducer(reducer,localState);
   return (
-    <UserProvider value={{state,dispatch}}>
+    <>
+    {/* // <UserProvider value={{state,dispatch}}> */}
       <Header />
       <Routes>
         {/* <Route path='/login' element={<Login/>}></Route> */}
@@ -48,7 +49,8 @@ const [state,dispatch] = useReducer(reducer,localState);
 
       </Routes>
       <Footer />
-      </UserProvider>
+      {/* // </UserProvider> */}
+      </>
   );
 }
 
