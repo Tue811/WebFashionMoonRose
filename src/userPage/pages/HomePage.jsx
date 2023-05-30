@@ -83,7 +83,7 @@ const getListCategories =async()=>{
   setCategories(c)
 }
 const {state,dispatch} = React.useContext(UserContext);
-
+console.log(state)
  const addToCart=(product, index)=>{
   // const cart=props.cart; 
   //  cart.push(e)
