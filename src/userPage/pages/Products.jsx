@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import { Col, Row } from 'antd';
-import CartProduct from '../components/CartProduct';
+import CartProduct from '../components/CardProduct';
 
 const Products = () => {
     return (

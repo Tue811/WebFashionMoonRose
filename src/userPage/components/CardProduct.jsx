@@ -2,10 +2,10 @@ import React from "react";
 import { Button, Card, Rate, Typography } from "antd";
 import Btn from "./Btn";
 import { Link } from "react-router-dom";
-import {PlusOutlined} from '@ant-design/icons';
+import {PlusOutlined, HeartOutlined} from '@ant-design/icons';
 import { useDispatch } from "react-redux";
 const { Meta } = Card;
-const CartProduct = ({src,name,price,addToCart}) => {
+const CartProduct = ({src,name,price,addToCart, addToFavourite}) => {
 
   return (
     <div>
@@ -60,6 +60,12 @@ const CartProduct = ({src,name,price,addToCart}) => {
             onClick={addToCart}
             >
                 <PlusOutlined />
+            </Button>
+            <Button
+            style={{backgroundColor:"#DABAAD", color:"white"}}
+            onClick={addToFavourite}
+            >
+                <HeartOutlined /> 
             </Button>
         </Typography>
       </Card>

@@ -3,7 +3,7 @@ import { ProductDetailComponent, ProductInfo,Color, Size, Price, ValueSize } fro
 import { Col, Row,Input } from 'antd';
 import Btn from '../components/Btn';
 import { ListProducts } from '../styles/homepageStyle';
-import CartProduct from '../components/CartProduct';
+import CartProduct from '../components/CardProduct';
 
 const ProductDetail = () => {
     return (

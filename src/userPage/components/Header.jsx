@@ -65,7 +65,7 @@ const Header = () => {
           </NavLink>
           <NavLink to="#">
                       <Badge
-                        count={5}
+                        count={state.favourite?.length}
                         offset={[10, 10]}
                         size="small"
                         style={{

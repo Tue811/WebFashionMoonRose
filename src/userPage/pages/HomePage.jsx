@@ -18,7 +18,7 @@ import { Col, Row } from "antd";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import CartProduct from "../components/CartProduct";
+import CartProduct from "../components/CardProduct";
 import { Link } from "react-router-dom";
 import EvaluateComponent from "../components/EvaluateComponent";
 import banner from "../../assets/img/banner.jpg";
@@ -90,10 +90,8 @@ const {state,dispatch} = React.useContext(UserContext);
   //  console.log(props)
   //  props.add_cart(cart)
   // dispatch({type: ADDCART, payload: cart})
-  console.log(product);
   let check = false;
         state.cart.map((e, index)=>{
-          console.log(e)
             if(e.index == index){
                 e.qty = e.qty+1;
                 check =  true;    
@@ -104,10 +102,27 @@ const {state,dispatch} = React.useContext(UserContext);
             product.qty = 1;
             state.cart.push(product);
         }
-        dispatch({type:"update_cart",payload:state.cart});
-        setTimeout(()=>{
-            dispatch({type:"hide_loading"});
-        },1000);
+        dispatch({type:"ADDCART",payload:state.cart});
+        
+        localStorage.setItem("state",JSON.stringify(state)); 
+ }
+
+ const addToFavourite=(product, k)=>{
+  console.log(product);
+  let check = false;
+        state?.favourite?.map((e, index)=>{
+          console.log(e)
+            if(index == k){
+                e.qty = e.qty+1;
+                check =  true;    
+            }
+            return e;
+        })
+        if(check== false){
+            product.qty = 1;
+            state.favourite?.push(product);
+        }
+        dispatch({type:"ADDFAVOURITE",payload:state.favourite});
         
         localStorage.setItem("state",JSON.stringify(state)); 
  }
@@ -175,6 +190,7 @@ const {state,dispatch} = React.useContext(UserContext);
                   price={e.finalprice}
                   src={e.thumbnail}
                   addToCart={()=>addToCart(e,k)}
+                  addToFavourite={()=>addToFavourite(e,k)}
                   />
                 
                 </Col>
