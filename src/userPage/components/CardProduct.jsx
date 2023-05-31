@@ -54,7 +54,7 @@ const CartProduct = ({src,name,price,addToCart, addToFavourite}) => {
             <b style={{
                 fontWeight:900,
                 fontSize: "18px"
-            }}>{price}/</b>
+            }}>{price.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</b>
             <Button
             style={{backgroundColor:"#DABAAD", color:"white"}}
             onClick={addToCart}
