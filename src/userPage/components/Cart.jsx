@@ -32,16 +32,19 @@ const Cart = (props) => {
     localStorage.setItem("state", JSON.stringify(state));
     // updateCart();
   };
-  const handleDecrement = (product) => {};
+  const handleDecrement = (product) => {
+
+  };
   const handleIncrement = (product) => {
-    setCart(
-      state.cart.map((e) => {
-        if (e.id == product.id) {
-          e.qty = e.qty + 1;
-        }
-        return e;
-      })
-    );
+    state.cart.map((e) => {
+      if (e.id == product.id) {
+        e.qty = e.qty + 1;
+      }
+      
+    });
+   
+    
+
   };
 
   return (
@@ -70,6 +73,7 @@ const Cart = (props) => {
                               <hr className="my-4" />
 
                               {state.cart.map((v, k) => {
+                                console.log(v);
                                 return (
                                   <div
                                     key={k}
@@ -99,7 +103,8 @@ const Cart = (props) => {
                                       >
                                         -
                                       </Button>
-                                      <span> {v.qty} </span>
+                                      <span className="quanty"> {v.qty} </span>
+
                                       <Button
                                         shape="circle"
                                         onClick={() => handleIncrement(v.id)}
@@ -109,7 +114,7 @@ const Cart = (props) => {
                                     </div>
                                     <div className="col-md-2 col-lg-2 col-xl-2 offset-lg-1">
                                       <h6 className="mb-0">
-                                        {v.finalprice * v.qty}đ
+                                        {(v.finalprice * v.qty).toLocaleString('vi', { style: 'currency', currency: 'VND' })}
                                       </h6>
                                     </div>
                                     <div className="col-md-1 col-lg-1 col-xl-1 text-end">
@@ -158,12 +163,19 @@ const Cart = (props) => {
                                     totals += v.finalprice * v.qty;
                                     // console.log(totals);
                                   })}
-                                  <h5>{totals}đ</h5>
+                                  <h5>{totals.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</h5>
                                 </h5>
                               </div>
                               <hr className="my-4" />
-
-                              <h5 className=" mb-3">Tiền vận chuyển: 20000đ</h5>
+                              <div className="row">
+                                  <div className="col-6">
+                                  <h5 className=" mb-3">Tiền vận chuyển:</h5>
+                                  </div>
+                                  <div className="col-6">
+                                  <h5 className=" mb-3 tvc" >20.000đ</h5>
+                                  </div>
+                              </div>    
+                              
 
                               <div className="mb-4 pb-2">
                                 <h5 className=" mb-3">
@@ -172,9 +184,7 @@ const Cart = (props) => {
 
                                 <select className="form-select form-select-lg mb-3">
                                   <option selected>Mã giảm 15k</option>
-                                  <option value="1">One</option>
-                                  <option value="2">Two</option>
-                                  <option value="3">Three</option>
+                                  
                                 </select>
                               </div>
 
@@ -197,7 +207,7 @@ const Cart = (props) => {
                                 <h5 className="text-uppercase">
                                   Tổng thanh toán
                                 </h5>
-                                <h5>{totals}đ</h5>
+                                <h5>{totals.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</h5>
                               </div>
 
                               <button

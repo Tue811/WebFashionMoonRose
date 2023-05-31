@@ -100,7 +100,7 @@ const CartProduct = ({product}) => {
             <b style={{
                 fontWeight:900,
                 fontSize: "18px"
-            }}>{product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</b>
+            }}>{product.price && product.price.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</b>
             <Button
             style={{backgroundColor:"#DABAAD", color:"white"}}
             onClick={()=>addToCart(product)}
