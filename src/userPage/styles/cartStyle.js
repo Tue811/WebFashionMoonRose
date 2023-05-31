@@ -19,7 +19,7 @@ export const LeftStyle = styled.div`
   border: 1px solid rgb(192, 187, 187);
     border-radius: 20px;
     .quanty{
-      padding:0 5px;
+      padding:0 10px;
     }
 `;
 export const SelectStyle = styled.select`
