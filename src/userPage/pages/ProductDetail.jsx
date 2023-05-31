@@ -18,9 +18,7 @@ const ProductDetail = () => {
       
       const refresh=async()=>{
         const t=await listProducts(8);
-      
         setProducts(t)
-      
       
       }
       
