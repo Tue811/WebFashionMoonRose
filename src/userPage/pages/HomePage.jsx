@@ -18,28 +18,31 @@ import { Col, Row } from "antd";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
-import CartProduct from "../components/CardProduct";
+import CartProduct from "../components/CartProduct";
 import { Link } from "react-router-dom";
 import EvaluateComponent from "../components/EvaluateComponent";
 import banner from "../../assets/img/banner.jpg";
 import logo from "../../assets/img/logowebclothing.png";
-import SwiperCore, { Virtual, Navigation, Pagination , Autoplay} from "swiper";
+import SwiperCore, { Virtual, Navigation, Pagination, Autoplay } from "swiper";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { connect, useDispatch } from "react-redux";
-import { listProducts, listCategories, addCart } from "../services/productAction";
-import db from '../../db'
+import {
+  listProducts,
+  listCategories,
+  addCart,
+} from "../services/productAction";
+import db from "../../db";
 import { ADDCART } from "../contants/productsContants";
-import UserContext from '../context/UserContext'
+import UserContext from "../context/UserContext";
 
 // // Import Swiper styles
 
 const HomePage = (props) => {
-
   const [swiperRef, setSwiperRef] = useState(null);
   const appendNumber = useRef(500);
   const prependNumber = useRef(1);
-  const [products, setProducts]=useState([]);
-  const [categories, setCategories] = useState([])
+  const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
   // Create array with 500 slides
   // const [slides, setSlides] = useState(
   //   Array.from({ length: 500 }).map((_, index) => `Slide ${index + 1}`)
@@ -63,69 +66,52 @@ const HomePage = (props) => {
   //   swiperRef.slideTo(index - 1, 0);
   // };
 
-// const dispatch=useDispatch();
+  // const dispatch=useDispatch();
 
-useEffect(()=>{
-  refresh();
-  getListCategories()
-},[])
+  useEffect(() => {
+    refresh();
+    getListCategories();
+  }, []);
 
-const refresh=async()=>{
-  const t=await listProducts(8);
+  const refresh = async () => {
+    const t = await listProducts(8);
 
-  setProducts(t)
+    setProducts(t);
+  };
 
+  const getListCategories = async () => {
+    const c = await listCategories();
+    setCategories(c);
+  };
+  const { state, dispatch } = React.useContext(UserContext);
 
-}
+  const addToCart = (product) => {
+    // const cart=props.cart;
+    //  cart.push(e)
+    //  console.log(props)
+    //  props.add_cart(cart)
+    // dispatch({type: ADDCART, payload: cart})
+    // console.log(product);
+    let check = false;
+    state.cart.map((e) => {
+      // console.log(e);
+      if (e.id == product.id) {
+        e.qty = e.qty + 1;
+        check = true;
+      }
+      return e;
+    });
+    if (check == false) {
+      product.qty = 1;
+      state.cart.push(product);
+    }
+    dispatch({ type: "update_cart", payload: state.cart });
+    setTimeout(() => {
+      dispatch({ type: "hide_loading" });
+    }, 1000);
 
-const getListCategories =async()=>{
-  const c = await listCategories();
-  setCategories(c)
-}
-const {state,dispatch} = React.useContext(UserContext);
-console.log(state)
- const addToCart=(product, index)=>{
-  // const cart=props.cart; 
-  //  cart.push(e)
-  //  console.log(props)
-  //  props.add_cart(cart)
-  // dispatch({type: ADDCART, payload: cart})
-  let check = false;
-        state.cart.map((e, index)=>{
-            if(e.index == index){
-                e.qty = e.qty+1;
-                check =  true;    
-            }
-            return e;
-        })
-        if(check== false){
-            product.qty = 1;
-            state.cart.push(product);
-        }
-        dispatch({type:"ADDCART",payload:state.cart});
-        
-        localStorage.setItem("state",JSON.stringify(state)); 
- }
-
- const addToFavourite=(product, k)=>{
-  console.log(product);
-  let check = false;
-        state?.favourite?.map((e, index)=>{
-          console.log(e)
-            if(index == k){
-                e.qty = e.qty+1;
-                check =  true;    
-            }
-            return e;
-        })
-        if(check== false){
-            product.qty = 1;
-            state.favourite?.push(product);
-        }
-        dispatch({type:"ADDFAVOURITE",payload:state.favourite});
-        
-        localStorage.setItem("state",JSON.stringify(state)); 
- }
+    localStorage.setItem("state", JSON.stringify(state));
+  };
 
   return (
     <div>
@@ -139,7 +125,9 @@ console.log(state)
                 Chúng tôi luôn đặt nhu cầu và mong muốn của khách hàng lên hàng
                 đầu
               </p>
-              <Link to="/products"><Btn text="Mua sắm ngay"></Btn></Link>
+              <Link to="/products">
+                <Btn text="Mua sắm ngay"></Btn>
+              </Link>
             </Col>
             <Col span={12}>
               <img style={{ width: "100%", padding: 0 }} src={banner} />
@@ -161,42 +149,37 @@ console.log(state)
             // navigation={true}
           >
             {/* {slides.map((slideContent, index) => ( */}
-           {
-             categories.map((e,k)=>{
-              return(
-                <SlideItem key={k} style={{
-                  background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${e.thumbnail})`,
-                  backgroundSize:"100% "
-               }}>
-                 {e.name}
-               </SlideItem>
-              )
-             })
-           }
-          
+            {categories.map((e, k) => {
+              return (
+                <SlideItem
+                  key={k}
+                  style={{
+                    background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${e.thumbnail})`,
+                    backgroundSize: "100% ",
+                  }}
+                >
+                  {e.name}
+                </SlideItem>
+              );
+            })}
           </Swiper>
         </Trending>
         <Collection>
           <h3>New Best Collection</h3>
           <ListProducts>
             <Row>
-             {
-               products.map((e,k) => {
-                return(
+              {products.map((e, k) => {
+                return (
                   <Col key={k} span={6}>
-            
-                  <CartProduct 
-                  name={e.name}
-                  price={e.finalprice}
-                  src={e.thumbnail}
-                  addToCart={()=>addToCart(e,k)}
-                  addToFavourite={()=>addToFavourite(e,k)}
-                  />
-                
-                </Col>
-                )
-              })
-             }
+                    <CartProduct
+                      name={e.name}
+                      price={e.finalprice}
+                      src={e.thumbnail}
+                      addToCart={() => addToCart(e, k)}
+                    />
+                  </Col>
+                );
+              })}
             </Row>
           </ListProducts>
           <Link to="/">View All</Link>
@@ -226,7 +209,6 @@ console.log(state)
           </Row>
         </GeneralComment>
       </ContentLayout>
-      
     </div>
   );
 };
