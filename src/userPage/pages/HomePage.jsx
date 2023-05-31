@@ -82,49 +82,7 @@ const getListCategories =async()=>{
   const c = await listCategories();
   setCategories(c)
 }
-const {state,dispatch} = React.useContext(UserContext);
- const addToCart=(product, index)=>{
-  // const cart=props.cart; 
-  //  cart.push(e)
-  //  console.log(props)
-  //  props.add_cart(cart)
-  // dispatch({type: ADDCART, payload: cart})
-  let check = false;
-        state.cart.map((e, index)=>{
-            if(e.index == index){
-                e.qty = e.qty+1;
-                check =  true;    
-            }
-            return e;
-        })
-        if(check== false){
-            product.qty = 1;
-            state.cart.push(product);
-        }
-        dispatch({type:"ADDCART",payload:state.cart});
-        
-        localStorage.setItem("state",JSON.stringify(state)); 
- }
 
- const addToFavourite=(product, k)=>{
-  console.log(product);
-  let check = false;
-        state?.favourite?.map((e, index)=>{
-          console.log(e)
-            if(index == k){
-                e.qty = e.qty+1;
-                check =  true;    
-            }
-            return e;
-        })
-        if(check== false){
-            product.qty = 1;
-            state.favourite?.push(product);
-        }
-        dispatch({type:"ADDFAVOURITE",payload:state.favourite});
-        
-        localStorage.setItem("state",JSON.stringify(state)); 
- }
 
   return (
     <div>
@@ -185,11 +143,12 @@ const {state,dispatch} = React.useContext(UserContext);
                   <Col key={k} span={6}>
             
                   <CartProduct 
-                  name={e.name}
-                  price={e.finalprice}
-                  src={e.thumbnail}
-                  addToCart={()=>addToCart(e,k)}
-                  addToFavourite={()=>addToFavourite(e,k)}
+                  product={e}
+                  // name={e.name}
+                  // price={e.finalprice}
+                  // src={e.thumbnail}
+                  // addToCart={()=>addToCart(e,k)}
+                  // addToFavourite={()=>addToFavourite(e,k)}
                   />
                 
                 </Col>
