@@ -93,10 +93,7 @@ const Cart = (props) => {
                                       </h6>
                                     </div>
                                     <div className="col-md-4 col-lg-4 col-xl-2 d-flex">
-                                      {/* <button className="btn btn-link px-2"
-                                                                        onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                                                                        <i className="fas fa-minus"></i>
-                                                                    </button> */}
+                                     
                                       <Button
                                         shape="circle"
                                         onClick={() => handleDecrement(v.id)}
