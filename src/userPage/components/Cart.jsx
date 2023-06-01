@@ -15,6 +15,7 @@ const Cart = (props) => {
   const { state, dispatch } = React.useContext(UserContext);
   const [cart, setCart] = useState([]);
 
+  var priceTransport= 20000;
   var totals = 0;
   const removeCart = (product) => {
     const new_cart = [];
@@ -204,7 +205,7 @@ const Cart = (props) => {
                                 <h5 className="text-uppercase">
                                   Tổng thanh toán
                                 </h5>
-                                <h5>{totals.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</h5>
+                                <h5>{(totals+ priceTransport).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</h5>
                               </div>
 
                               <button
