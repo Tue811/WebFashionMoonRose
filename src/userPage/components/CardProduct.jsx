@@ -9,29 +9,55 @@ const CartProduct = ({product}) => {
 
 
   const {state,dispatch} = React.useContext(UserContext);
-  const addToCart=(product, index)=>{
-   // const cart=props.cart; 
-   //  cart.push(e)
-   //  console.log(props)
-   //  props.add_cart(cart)
-   // dispatch({type: ADDCART, payload: cart})
-   let check = false;
+  // const addToCart=(product, index)=>{
+  //  // const cart=props.cart; 
+  //  //  cart.push(e)
+  //  //  console.log(props)
+  //  //  props.add_cart(cart)
+  //  // dispatch({type: ADDCART, payload: cart})
+  //  let check = false;
 
-         state.cart.map((e, index)=>{
-             if(e.index == index){
-                 e.qty = e.qty+1;
-                 check =  true;    
-             }
-             return e;
-         })
-         if(check== false){
-             product.qty = 1;
-             state.cart.push(product);
-         }
-         dispatch({type:"ADDCART",payload:state.cart});
+  //        state.cart.map((e, index)=>{
+  //            if(e.index == index){
+  //                e.qty = e.qty+1;
+  //                check =  true;    
+  //            }
+  //            return e;
+  //        })
+  //        if(check== false){
+  //            product.qty = 1;
+  //            state.cart.push(product);
+  //        }
+  //        dispatch({type:"ADDCART",payload:state.cart});
          
-         localStorage.setItem("state",JSON.stringify(state)); 
-  }
+  //        localStorage.setItem("state",JSON.stringify(state)); 
+  // }
+  const addToCart = (product) => {
+    // const cart=props.cart;
+    //  cart.push(e)
+    //  console.log(props)
+    //  props.add_cart(cart)
+    // dispatch({type: ADDCART, payload: cart})
+    // console.log(product);
+    let check = false;
+    state.cart.map((e) => {
+      if (e.id == product.id) {
+        e.qty = e.qty + 1;
+        check = true;
+      }
+      return e;
+    });
+    if (check == false) {
+      product.qty = 1;
+      state.cart.push(product);
+    }
+    dispatch({ type: "update_cart", payload: state.cart });
+    setTimeout(() => {
+      dispatch({ type: "hide_loading" });
+    }, 1000);
+
+    localStorage.setItem("state", JSON.stringify(state));
+  };
  
   const addToFavourite=(product, k)=>{
 
