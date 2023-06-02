@@ -29,9 +29,6 @@ const Cart = (props) => {
     state.cart = new_cart;
     // setState(state);
     dispatch({ type: UPDATECART, payload: new_cart });
-    setTimeout(() => {
-      dispatch({ type: "hide_loading" });
-    }, 1000);
     localStorage.setItem("state", JSON.stringify(state));
     // updateCart();
   };
@@ -44,9 +41,6 @@ const Cart = (props) => {
       return e;
     });
     dispatch({ type: UPDATECART, payload: new_cart });
-    setTimeout(() => {
-      dispatch({ type: "hide_loading" });
-    }, 1000);
     localStorage.setItem("state", JSON.stringify(state));
   };
 
@@ -58,9 +52,6 @@ const Cart = (props) => {
       return e;
     });
     dispatch({ type: UPDATECART, payload: new_cart });
-    setTimeout(() => {
-      dispatch({ type: "hide_loading" });
-    }, 1000);
     localStorage.setItem("state", JSON.stringify(state));
   };
 
