@@ -6,10 +6,12 @@ import { ListProducts } from '../styles/homepageStyle';
 import CartProduct from '../components/CardProduct';
 import { listProducts, listCategories, addCart } from "../services/productAction";
 import UserContext from '../context/UserContext'
+import { useParams } from "react-router-dom";
 
 const ProductDetail = () => {
     const [products, setProducts]=useState([]);
-    const [categories, setCategories] = useState([])
+    const [categories, setCategories] = useState([]);
+    const { id } = useParams();
 
     useEffect(()=>{
         refresh();

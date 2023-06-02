@@ -10,6 +10,7 @@ import {
 } from "../styles/cartStyle";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
+import { UPDATECART } from "../contants/productsContants";
 
 const Cart = (props) => {
   const { state, dispatch } = React.useContext(UserContext);
@@ -17,7 +18,7 @@ const Cart = (props) => {
 
   var priceTransport = 20000;
   var totals = 0;
-
+ 
   const removeCart = (product) => {
     const new_cart = [];
     state.cart.map((e) => {
@@ -27,19 +28,45 @@ const Cart = (props) => {
     });
     state.cart = new_cart;
     // setState(state);
-    dispatch({ type: "update_cart", payload: new_cart });
+    dispatch({ type: UPDATECART, payload: new_cart });
     setTimeout(() => {
       dispatch({ type: "hide_loading" });
     }, 1000);
     localStorage.setItem("state", JSON.stringify(state));
     // updateCart();
   };
-  const handleDecrement = (product) => {};
-  const handleIncrement = (product) => {
-    state.cart.map((e) => {});
-    dispatch({ type: "update_cart", payload: state.cart });
+  const handleDecrement = (product) => {
+    console.log("test")
+    const new_cart = state.cart.map((e) => {
+      if (e.id === product.id) {
+        e.qty = e.qty - 1;
+      }
+      return e;
+    });
+    dispatch({ type: UPDATECART, payload: new_cart });
+    setTimeout(() => {
+      dispatch({ type: "hide_loading" });
+    }, 1000);
     localStorage.setItem("state", JSON.stringify(state));
   };
+
+  const handleIncrement = (product) => {
+    const new_cart = state.cart.map((e) => {
+      if (e.id === product.id) {
+        e.qty = e.qty + 1;
+      }
+      return e;
+    });
+    dispatch({ type: UPDATECART, payload: new_cart });
+    setTimeout(() => {
+      dispatch({ type: "hide_loading" });
+    }, 1000);
+    localStorage.setItem("state", JSON.stringify(state));
+  };
+
+  useEffect(() => {
+    setCart(state.cart);
+  }, [state.cart]);
 
   return (
     <section>
