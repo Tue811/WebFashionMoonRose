@@ -8,7 +8,7 @@ import {
 } from "../styles/cartStyle";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
-import { Space } from "antd";
+import { Space, Select } from "antd";
 import { Button, Checkbox, Form, Input } from "antd";
 
 const Payment = () => {
@@ -91,10 +91,10 @@ const Payment = () => {
                                 >
                                   <Input />
                                 </Form.Item>
-                           
+
                                 <Form.Item
                                   label="Email"
-                                  name="username"
+                                  name="email"
                                   rules={[
                                     {
                                       required: true,
@@ -104,11 +104,10 @@ const Payment = () => {
                                 >
                                   <Input />
                                 </Form.Item>
-                             
-                           
+
                                 <Form.Item
                                   label="Số điện thoại"
-                                  name="username"
+                                  name="phone"
                                   rules={[
                                     {
                                       required: true,
@@ -119,11 +118,10 @@ const Payment = () => {
                                 >
                                   <Input />
                                 </Form.Item>
-                           
-                          
+
                                 <Form.Item
                                   label="Địa chỉ"
-                                  name="username"
+                                  name="address"
                                   rules={[
                                     {
                                       required: true,
@@ -132,6 +130,27 @@ const Payment = () => {
                                   ]}
                                 >
                                   <Input />
+                                </Form.Item>
+                                <Form.Item
+                                  label="Phương thức thanh toán"
+                                  name="method-payment"
+                                  rules={[
+                                    {
+                                      required: true,
+                                      message:
+                                        "Vui lòng chọn phương thức thanh toán của bạn!",
+                                    },
+                                  ]}
+                                >
+                                  <Select
+                                    defaultValue="null"
+                                    style={{ width: "100%" }}
+                                    options={[
+                                        {value:"null",label:"Chọn phương thức thanh toán"},
+                                      { value: "delivery", label: "Thanh toán khi nhận hàng" },
+                                      { value: "online", label: "Thanh toán Online" },
+                                    ]}
+                                  />
                                 </Form.Item>
                               </Form>
 
