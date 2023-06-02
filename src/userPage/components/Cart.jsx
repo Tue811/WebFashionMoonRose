@@ -15,8 +15,9 @@ const Cart = (props) => {
   const { state, dispatch } = React.useContext(UserContext);
   const [cart, setCart] = useState([]);
 
-  var priceTransport= 20000;
+  var priceTransport = 20000;
   var totals = 0;
+
   const removeCart = (product) => {
     const new_cart = [];
     state.cart.map((e) => {
@@ -33,19 +34,11 @@ const Cart = (props) => {
     localStorage.setItem("state", JSON.stringify(state));
     // updateCart();
   };
-  const handleDecrement = (product) => {
-
-  };
+  const handleDecrement = (product) => {};
   const handleIncrement = (product) => {
-    state.cart.map((e) => {
-      if (e.id == product.id) {
-        e.qty = e.qty + 1;
-      }
-      
-    });
-   
-    
-
+    state.cart.map((e) => {});
+    dispatch({ type: "update_cart", payload: state.cart });
+    localStorage.setItem("state", JSON.stringify(state));
   };
 
   return (
@@ -94,7 +87,6 @@ const Cart = (props) => {
                                       </h6>
                                     </div>
                                     <div className="col-md-4 col-lg-4 col-xl-2 d-flex">
-                                     
                                       <Button
                                         shape="circle"
                                         onClick={() => handleDecrement(v.id)}
@@ -112,7 +104,10 @@ const Cart = (props) => {
                                     </div>
                                     <div className="col-md-2 col-lg-2 col-xl-2 offset-lg-1">
                                       <h6 className="mb-0">
-                                        {(v.finalprice * v.qty).toLocaleString('vi', { style: 'currency', currency: 'VND' })}
+                                        {(v.finalprice * v.qty).toLocaleString(
+                                          "vi",
+                                          { style: "currency", currency: "VND" }
+                                        )}
                                       </h6>
                                     </div>
                                     <div className="col-md-1 col-lg-1 col-xl-1 text-end">
@@ -161,30 +156,33 @@ const Cart = (props) => {
                                     totals += v.finalprice * v.qty;
                                     // console.log(totals);
                                   })}
-                                  <h5>{totals.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</h5>
+                                  <h5>
+                                    {totals.toLocaleString("vi", {
+                                      style: "currency",
+                                      currency: "VND",
+                                    })}
+                                  </h5>
                                 </h5>
                               </div>
                               <hr className="my-4" />
                               <div className="row">
-                                  <div className="col-6">
+                                <div className="col-6">
                                   <h5 className=" mb-3">Tiền vận chuyển:</h5>
-                                  </div>
-                                  <div className="col-6">
-                                  <h5 className=" mb-3 tvc" >20.000đ</h5>
-                                  </div>
-                              </div>    
-                              
+                                </div>
+                                <div className="col-6">
+                                  <h5 className=" mb-3 tvc">20.000đ</h5>
+                                </div>
+                              </div>
 
-                              <div className="mb-4 pb-2">
+                              {/* <div className="mb-4 pb-2">
                                 <h5 className=" mb-3">
                                   Áp mã giảm giá vận chuyển
                                 </h5>
 
                                 <select className="form-select form-select-lg mb-3">
                                   <option selected>Mã giảm 15k</option>
-                                  
                                 </select>
-                              </div>
+                              </div> */}
 
                               <div className="mb-5">
                                 <div className="form-outline">
@@ -205,16 +203,22 @@ const Cart = (props) => {
                                 <h5 className="text-uppercase">
                                   Tổng thanh toán
                                 </h5>
-                                <h5>{(totals+ priceTransport).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</h5>
+                                <h5>
+                                  {(totals + priceTransport).toLocaleString(
+                                    "vi",
+                                    { style: "currency", currency: "VND" }
+                                  )}
+                                </h5>
                               </div>
-
-                              <button
-                                type="button"
-                                className="btn btn-dark btn-block btn-lg"
-                                data-mdb-ripple-color="dark"
-                              >
-                                Đặt hàng
-                              </button>
+                              <Link to={"/payment"}>
+                                <button
+                                  type="button"
+                                  className="btn btn-dark btn-block btn-lg"
+                                  data-mdb-ripple-color="dark"
+                                >
+                                  Đặt hàng
+                                </button>
+                              </Link>
                             </div>
                           </RightStyle>
                         </div>

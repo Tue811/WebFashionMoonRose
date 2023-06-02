@@ -21,6 +21,7 @@ import BlogDetail from "./userPage/components/BlogDetail";
 import Contact from "./userPage/pages/Contact";
 import Cart from "./userPage/components/Cart";
 import Account from "./userPage/pages/Account";
+import Payment from "./userPage/components/Payment";
 
 function App() {
   const localState = localStorage.getItem("state")
@@ -45,7 +46,9 @@ function App() {
           <Route path="/contact" element={<Contact />} />
           <Route path="/blogdetail" element={<BlogDetail />} />
           <Route path="/cart" element={<Cart />} />
-            <Route path="/account" element={<Account />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/payment" element={<Payment />} />
+
         </Routes>
         <Footer />
       </>
