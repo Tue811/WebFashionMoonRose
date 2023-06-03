@@ -19,9 +19,9 @@ import AboutUs from "./userPage/pages/AboutUs";
 import Blog from "../src/userPage/components/Blog";
 import BlogDetail from "./userPage/components/BlogDetail";
 import Contact from "./userPage/pages/Contact";
-import Cart from "./userPage/components/Cart";
+import Cart from "./userPage/pages/Cart";
 import Account from "./userPage/pages/Account";
-import Payment from "./userPage/components/Payment";
+import Payment from "./userPage/pages/Payment";
 
 function App() {
   const localState = localStorage.getItem("state")
