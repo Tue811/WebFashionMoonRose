@@ -33,25 +33,25 @@ const Cart = (props) => {
     // updateCart();
   };
   const handleDecrement = (product) => {
-    console.log("test")
-    const new_cart = state.cart.map((e) => {
-      if (e.id === product.id) {
+    state.cart.map((e) => {
+      if (e.id === product) {
         e.qty = e.qty - 1;
       }
       return e;
     });
-    dispatch({ type: UPDATECART, payload: new_cart });
+    dispatch({ type: UPDATECART, payload: state.cart });
     localStorage.setItem("state", JSON.stringify(state));
   };
 
   const handleIncrement = (product) => {
-    const new_cart = state.cart.map((e) => {
-      if (e.id === product.id) {
+    state.cart.map((e) => {
+      if (e.id === product) {
         e.qty = e.qty + 1;
+     
       }
       return e;
     });
-    dispatch({ type: UPDATECART, payload: new_cart });
+    dispatch({ type: UPDATECART, payload: state.cart });
     localStorage.setItem("state", JSON.stringify(state));
   };
 
@@ -85,7 +85,7 @@ const Cart = (props) => {
                               <hr className="my-4" />
 
                               {state.cart.map((v, k) => {
-                                console.log(v);
+                                // console.log(v);
                                 return (
                                   <div
                                     key={k}
