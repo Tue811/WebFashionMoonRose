@@ -37,6 +37,11 @@ const CardOrder = (product) => {
 
             </div>
            </div>
+           <div>
+            <p>
+                Đã nhận hàng
+            </p>
+           </div>
             <div>
             <h4>5000</h4>
             </div>
