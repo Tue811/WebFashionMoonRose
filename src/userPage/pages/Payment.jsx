@@ -146,9 +146,18 @@ const Payment = () => {
                                     defaultValue="null"
                                     style={{ width: "100%" }}
                                     options={[
-                                        {value:"null",label:"Chọn phương thức thanh toán"},
-                                      { value: "delivery", label: "Thanh toán khi nhận hàng" },
-                                      { value: "online", label: "Thanh toán Online" },
+                                      {
+                                        value: "null",
+                                        label: "Chọn phương thức thanh toán",
+                                      },
+                                      {
+                                        value: "delivery",
+                                        label: "Thanh toán khi nhận hàng",
+                                      },
+                                      {
+                                        value: "online",
+                                        label: "Thanh toán Online",
+                                      },
                                     ]}
                                   />
                                 </Form.Item>
@@ -218,7 +227,7 @@ const Payment = () => {
                                                                                     +
                                                                                 </Button>
                                                                             </div> */}
-                                    <div className="col-md-5 col-lg-2 col-xl-2 offset-lg-1">
+                                    <div className="col-md-5 col-lg-5 col-xl-4 offset-lg-1">
                                       <h6 className="mb-0">
                                         {(v.finalprice * v.qty).toLocaleString(
                                           "vi",
