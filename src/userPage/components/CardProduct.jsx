@@ -85,7 +85,8 @@ const CartProduct = ({product}) => {
         hoverable
         style={{
         //   width: 240,
-        margin:"20px",  
+        margin:"20px",
+        height: 500  
         }}
 
         
@@ -131,7 +132,11 @@ const CartProduct = ({product}) => {
             style={{backgroundColor:"#DABAAD", color:"white"}}
             onClick={()=>addToCart(product)}
             >
-                <PlusOutlined />
+                <PlusOutlined
+                style={{padding: 0,
+                margin: 0
+                }}
+                />
             </Button>
             <Button
             style={{backgroundColor:"#DABAAD", color:"white"}}

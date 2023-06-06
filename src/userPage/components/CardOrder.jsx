@@ -1,4 +1,6 @@
 import React from 'react';
+import Btn from './Btn';
+import Link from 'antd/es/typography/Link';
 
 const CardOrder = (product) => {
     return (
@@ -37,10 +39,18 @@ const CardOrder = (product) => {
 
             </div>
            </div>
-           <div>
+           <div
+           style={{
+            textAlign:"center"
+           }}
+           >
             <p>
-                Đã nhận hàng
+                Đã Xác Nhận
             </p>
+            <Btn text='Hủy đơn hàng'/><br/>
+            <Link to="/">
+            Xem chi tiết đơn hàng
+            </Link>
            </div>
             <div>
             <h4>5000</h4>
