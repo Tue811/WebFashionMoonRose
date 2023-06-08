@@ -7,12 +7,18 @@ import CartProduct from '../components/CardProduct';
 import { listProducts, listCategories, addCart } from "../services/productAction";
 import UserContext from '../context/UserContext'
 import { useParams } from "react-router-dom";
+import db from '../../db';
 
 const ProductDetail = () => {
     const [products, setProducts]=useState([]);
     const [categories, setCategories] = useState([]);
+    const [name,setName]=useState("");
+    const [img, setImg]=useState("")
+    const [price, setPrice]=useState("");
+    const [des, setDes]=useState("")
     const { id } = useParams();
-
+    console.log(id)
+    console.log(products)
     useEffect(()=>{
         refresh();
         getListCategories()
@@ -29,21 +35,32 @@ const ProductDetail = () => {
         setCategories(c)
       }
 
+      useEffect(()=>{
+        products.map((e)=>{
+            if(e.id==id){
+                setName(e.name);
+                setDes(e.introduce);
+                setImg(e.thumbnail);
+                setPrice(e.finalprice)
+            }
+          })
+      } )
+
+
     return (
         <div>
             <ProductDetailComponent>
                 <Row>
                     <Col span={12} style={{textAlign:"center"}}>
-                        <img src='https://i.pinimg.com/564x/a5/f3/fc/a5f3fcbf2273210401e8789fe8f5d119.jpg'/>
+                        <img src={img}/>
                     </Col>
                     <Col span={12}>
                         <ProductInfo>
                         <h4>
-                            Blazer
+                            {name}
                         </h4>
                         <p>
-                        Xuất xứ từ Úc và được nhà thiết kế nổi tiếng tỉ mỉ làm thủ công 160 giờ để ra được sản phẩm 
-                        . Đặc biệt chất vải bền vừng và thân thiện với môi trường
+                       {des}
                         </p>
                         <Color>
                         <b>Màu sắc : </b><br/>
@@ -62,7 +79,7 @@ const ProductDetail = () => {
                         </Size>
                         <Price>
                             <b>Giá</b>
-                            <p>289,000 VNĐ</p>
+                            <p>{price}</p>
                         </Price>
                         <Btn text='Thêm vào giỏ hàng'></Btn>
                         <Btn text='Mua ngay'></Btn>
