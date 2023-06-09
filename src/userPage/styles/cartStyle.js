@@ -21,6 +21,9 @@ export const LeftStyle = styled.div`
     .quanty{
       padding:0 5px;
     }
+    /* .checkcart{
+      float: left;
+    } */
 `;
 export const SelectStyle = styled.select`
     width:50%;

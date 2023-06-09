@@ -11,6 +11,8 @@ import {
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import { UPDATECART } from "../contants/productsContants";
+import { Checkbox } from "antd";
+// import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 
 const Cart = (props) => {
   const { state, dispatch } = React.useContext(UserContext);
@@ -18,7 +20,7 @@ const Cart = (props) => {
 
   var priceTransport = 20000;
   var totals = 0;
- 
+
   const removeCart = (product) => {
     const new_cart = [];
     state.cart.map((e) => {
@@ -47,7 +49,6 @@ const Cart = (props) => {
     state.cart.map((e) => {
       if (e.id === product) {
         e.qty = e.qty + 1;
-     
       }
       return e;
     });
@@ -58,7 +59,9 @@ const Cart = (props) => {
   useEffect(() => {
     setCart(state.cart);
   }, [state.cart]);
-
+  const onChange = (e) => {
+    console.log(`checked = ${e.target.checked}`);
+  };
   return (
     <section>
       <div className="row">
@@ -91,7 +94,10 @@ const Cart = (props) => {
                                     key={k}
                                     className="row mb-4 d-flex justify-content-between align-items-center"
                                   >
-                                    <div className="col-md-2 col-lg-2 col-xl-2">
+                                    <div className="col-md-1 col-lg-1 col-xl-1 d-flex">
+                                      <Checkbox onChange={onChange}></Checkbox>
+                                    </div>
+                                    <div className="col-md-2 col-lg-2 col-xl-2 checkcart">
                                       <img
                                         src={v.thumbnail}
                                         className="img-fluid rounded-3"
@@ -104,7 +110,8 @@ const Cart = (props) => {
                                         {v.color}
                                       </h6>
                                     </div>
-                                    <div className="col-md-4 col-lg-4 col-xl-2 d-flex">
+                                    
+                                    <div className="col-md-3 col-lg-3 col-xl-1 d-flex">
                                       <Button
                                         shape="circle"
                                         onClick={() => handleDecrement(v.id)}
@@ -144,7 +151,6 @@ const Cart = (props) => {
                                   </div>
                                 );
                               })}
-
                               <hr className="my-4" />
 
                               <div className="pt-5">
