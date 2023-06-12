@@ -4,10 +4,9 @@ import Btn from "./Btn";
 import { Link } from "react-router-dom";
 import {PlusOutlined, HeartOutlined} from '@ant-design/icons';
 import UserContext from '../context/UserContext'
+import { UPDATECART } from "../contants/productsContants";
 const { Meta } = Card;
 const CartProduct = ({product}) => {
-
-
   const {state,dispatch} = React.useContext(UserContext);
   // const addToCart=(product, index)=>{
   //  // const cart=props.cart; 
@@ -51,7 +50,7 @@ const CartProduct = ({product}) => {
       product.qty = 1;
       state.cart.push(product);
     }
-    dispatch({ type: "update_cart", payload: state.cart });
+    dispatch({ type: UPDATECART, payload: state.cart });
     setTimeout(() => {
       dispatch({ type: "hide_loading" });
     }, 1000);

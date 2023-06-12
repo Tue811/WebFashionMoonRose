@@ -1,6 +1,8 @@
 const store ={
     cart:[],
     favourite:[],
+    checkproduct:[],
+
 
 }
 

@@ -11,7 +11,7 @@ import {
 } from "../styles/cartStyle";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
-import { UPDATECART } from "../contants/productsContants";
+import { UPDATECART,ADDCART } from "../contants/productsContants";
 
 const Favourite = ({ product }) => {
     const { state, dispatch } = React.useContext(UserContext);
@@ -49,7 +49,7 @@ const Favourite = ({ product }) => {
             product.qty = 1;
             state.cart?.push(product);
         }
-        dispatch({ type: "update_cart", payload: state.cart });
+        dispatch({ type: ADDCART, payload: state.cart });
         setTimeout(() => {
             dispatch({ type: "hide_loading" });
         }, 1000);

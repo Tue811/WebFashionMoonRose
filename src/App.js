@@ -40,17 +40,17 @@ function App() {
     <UserProvider value={{ state, dispatch }}>
       <>
         <Header />
-        <Routes>
+        <Routes >
           <Route path="/" element={<HomePage />} />
           <Route path="/products" element={<Products />} />
           <Route path="/product-detail/:id" element={<ProductDetail />} />
           <Route path="/about" element={<AboutUs />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/blogdetail" element={<BlogDetail />} />
+          <Route path="/blogdetail/:idblog" element={<BlogDetail />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/account" element={<Account />} />
-          <Route path="/payment" element={<Payment />} /> 
+          <Route path="/payment" element={<Payment />} />
           <Route path="/order" element={<MyOrder />} />
           <Route path="/orderdetail" element={<OrderDetail />} />
           <Route path="/favourite" element={<Favourite />} />
