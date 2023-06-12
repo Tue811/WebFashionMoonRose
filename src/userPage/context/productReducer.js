@@ -1,4 +1,4 @@
-import {ADDCART, LISTPRODUCTS,UPDATECART} from "../contants/productsContants"
+import {ADDCART, LISTPRODUCTS,UPDATECART, UPDATEORDER} from "../contants/productsContants"
 import { db } from '../../db'
 
 const initialState = {
@@ -24,6 +24,10 @@ function userReducer(state = initialState, action){
     case UPDATECART: {
             return {...state,cart:state.cart,isLoading:true};
         } 
+    
+    case UPDATEORDER : {
+        
+    }
 
     default: 
         return state;
