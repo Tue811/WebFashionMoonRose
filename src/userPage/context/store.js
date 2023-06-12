@@ -1,6 +1,7 @@
 const store ={
     cart:[],
     favourite:[],
+    order:[],
 
 }
 

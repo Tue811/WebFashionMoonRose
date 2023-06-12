@@ -12,14 +12,22 @@ import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import { UPDATECART } from "../contants/productsContants";
 import { Checkbox } from "antd";
+import CardCart from "../components/CardCart";
 // import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 
 const Cart = (props) => {
   const { state, dispatch } = React.useContext(UserContext);
   const [cart, setCart] = useState([]);
+  const [check,setCheck]=useState(false)
 
   var priceTransport = 20000;
   var totals = 0;
+
+  const finalPrice = () => {
+    return state?.order.reduce((total, item) => {
+      return total + item.finalprice * item.qty;
+    }, 0);
+  };
 
   const removeCart = (product) => {
     const new_cart = [];
@@ -56,12 +64,24 @@ const Cart = (props) => {
     localStorage.setItem("state", JSON.stringify(state));
   };
 
+  
+
   useEffect(() => {
     setCart(state.cart);
   }, [state.cart]);
+
   const onChange = (e) => {
     console.log(`checked = ${e.target.checked}`);
+    console.log(e)
+    if(e.target.checked=="true"){
+      state.order.push(e);
+    }
   };
+
+const onListOrder =(v)=>{
+
+}
+console.log(check)
   return (
     <section>
       <div className="row">
@@ -90,65 +110,7 @@ const Cart = (props) => {
                               {state.cart.map((v, k) => {
                                 // console.log(v);
                                 return (
-                                  <div
-                                    key={k}
-                                    className="row mb-4 d-flex justify-content-between align-items-center"
-                                  >
-                                    <div className="col-md-1 col-lg-1 col-xl-1 d-flex">
-                                      <Checkbox onChange={onChange}></Checkbox>
-                                    </div>
-                                    <div className="col-md-2 col-lg-2 col-xl-2 checkcart">
-                                      <img
-                                        src={v.thumbnail}
-                                        className="img-fluid rounded-3"
-                                        alt="Cotton T-shirt"
-                                      />
-                                    </div>
-                                    <div className="col-md-3 col-lg-3 col-xl-3">
-                                      <h6 className="text-muted">{v.name}</h6>
-                                      <h6 className="text-black mb-0">
-                                        {v.color}
-                                      </h6>
-                                    </div>
-                                    
-                                    <div className="col-md-3 col-lg-3 col-xl-1 d-flex">
-                                      <Button
-                                        shape="circle"
-                                        onClick={() => handleDecrement(v.id)}
-                                      >
-                                        -
-                                      </Button>
-                                      <span className="quanty"> {v.qty} </span>
-
-                                      <Button
-                                        shape="circle"
-                                        onClick={() => handleIncrement(v.id)}
-                                      >
-                                        +
-                                      </Button>
-                                    </div>
-                                    <div className="col-md-2 col-lg-2 col-xl-2 offset-lg-1">
-                                      <h6 className="mb-0">
-                                        {(v.finalprice * v.qty).toLocaleString(
-                                          "vi",
-                                          { style: "currency", currency: "VND" }
-                                        )}
-                                      </h6>
-                                    </div>
-                                    <div className="col-md-1 col-lg-1 col-xl-1 text-end">
-                                      {/* <button type="button" className="btn btn-danger">X</button> */}
-                                      <Space>
-                                        <Button
-                                          type="text"
-                                          onClick={() => {
-                                            removeCart(v);
-                                          }}
-                                        >
-                                          x
-                                        </Button>
-                                      </Space>
-                                    </div>
-                                  </div>
+                                  <CardCart product={v}/>
                                 );
                               })}
                               <hr className="my-4" />

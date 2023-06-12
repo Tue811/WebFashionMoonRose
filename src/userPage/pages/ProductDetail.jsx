@@ -7,9 +7,14 @@ import CartProduct from '../components/CardProduct';
 import { listProducts, listCategories, addCart } from "../services/productAction";
 import UserContext from '../context/UserContext'
 import { useParams } from "react-router-dom";
+// import { useHistory } from 'react-router-dom';
 import db from '../../db';
+import { useNavigate } from 'react-router-dom';
+
 
 const ProductDetail = () => {
+    
+  const {state,dispatch} = React.useContext(UserContext);
     const [products, setProducts]=useState([]);
     const [categories, setCategories] = useState([]);
     const [name,setName]=useState("");
@@ -17,6 +22,8 @@ const ProductDetail = () => {
     const [price, setPrice]=useState("");
     const [des, setDes]=useState("")
     const { id } = useParams();
+    // const history = useHistory();
+    const navigate = useNavigate();
     console.log(id)
     console.log(products)
     useEffect(()=>{
@@ -45,6 +52,43 @@ const ProductDetail = () => {
             }
           })
       } )
+      const addToCart = (id) => {
+        // const cart=props.cart;
+        //  cart.push(e)
+        //  console.log(props)
+        //  props.add_cart(cart)
+        // dispatch({type: ADDCART, payload: cart})
+        console.log(id);
+        let check = false;
+        state.cart.map((e) => {
+          if (e.id == id) {
+            e.qty = e.qty + 1;
+            check = true;
+          }
+          return e;
+        });
+        if (check == false) {
+            products.map((e)=>{
+                if(e.id==id){
+                    e.qty = 1;
+                    state.cart.push(e);
+                }
+              })
+        //   product.qty = 1;
+        //   state.cart.push(product);
+        }
+        dispatch({ type: "update_cart", payload: state.cart });
+        setTimeout(() => {
+          dispatch({ type: "hide_loading" });
+        }, 1000);
+    
+        localStorage.setItem("state", JSON.stringify(state));
+      };
+
+      const onPayment =()=>{
+        addToCart();
+        navigate( "/payment" )
+      }
 
 
     return (
@@ -79,10 +123,13 @@ const ProductDetail = () => {
                         </Size>
                         <Price>
                             <b>Giá</b>
-                            <p>{price}</p>
+                            <p>{price.toLocaleString("vi", {
+                                    style: "currency",
+                                    currency: "VND",
+                                  })}</p>
                         </Price>
-                        <Btn text='Thêm vào giỏ hàng'></Btn>
-                        <Btn text='Mua ngay'></Btn>
+                        <Btn text='Thêm vào giỏ hàng' onClick={addToCart(id)}></Btn>
+                        <Btn text='Mua ngay' onClick={onPayment()} ></Btn>
                         </ProductInfo>
                     </Col>
                 </Row>
