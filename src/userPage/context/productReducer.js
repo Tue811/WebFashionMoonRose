@@ -1,35 +1,40 @@
-import {ADDCART, LISTPRODUCTS,UPDATECART} from "../contants/productsContants"
-import { db } from '../../db'
+import {
+  ADDCART,
+  LISTPRODUCTS,
+  UPDATECART,
+  UPDATEORDER,
+} from "../contants/productsContants";
+import { db } from "../../db";
 
 const initialState = {
-    product: [],
-    cart: [],
-
+  product: [],
+  cart: [],
+  order:[],
 };
 
-
 function userReducer(state = initialState, action) {
-    switch (action.type) {
-        case LISTPRODUCTS:
-            return { ...state, product: action.payload };
+  switch (action.type) {
+    case LISTPRODUCTS:
+      return { ...state, product: action.payload };
 
-        case ADDCART:
-            {
-                // console.log(action)
-                return {
-                    ...state,cart: state.cart
-                }
-            }
-        case UPDATECART: {
-            return { ...state, cart: state.cart, isLoading: true, };
-        }
-    case UPDATECART: {
-            return {...state,cart:state.cart,isLoading:true};
-        } 
-
-    default: 
-        return state;
+    case ADDCART: {
+      // console.log(action)
+      return {
+        ...state,
+        cart: state.cart,
+      };
     }
+    case UPDATECART: {
+      return { ...state, cart: state.cart, isLoading: true };
+    }
+
+    case UPDATEORDER: {
+      return { ...state, order: state.order, isLoading: true };
+    }
+
+    default:
+      return state;
+  }
 }
 
 export default userReducer;

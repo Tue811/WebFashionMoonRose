@@ -11,15 +11,23 @@ import {
   ContentStyle,
   SelectStyle,
 } from "../styles/cartStyle";
+// import { Link } from "react-router-dom";
+import CardCart from "../components/CardCart";
+// import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 
 const Cart = () => {
   const { state, dispatch } = React.useContext(UserContext);
   const [cart, setCart] = useState([]);
-  const [checkproduct, setCheckproduct] = useState([]);
-  const [check, setCheck] = useState(false);
+  const [check,setCheck]=useState(false)
 
   var priceTransport = 20000;
   var totals = 0;
+
+  const finalPrice = () => {
+    return state?.order.reduce((total, item) => {
+      return total + item.finalprice * item.qty;
+    }, 0);
+  };
 
   const removeCart = (product) => {
     const new_cart = [];
@@ -57,20 +65,24 @@ const Cart = () => {
     localStorage.setItem("state", JSON.stringify(state));
   };
 
+  
+
   useEffect(() => {
     setCart(state.cart);
   }, [state.cart]);
 
   const onChange = (e) => {
-    setCheck(!e.target.checked);
-    if (check === true) {
-      setCheckproduct(e.target.product);
+    console.log(`checked = ${e.target.checked}`);
+    console.log(e)
+    if(e.target.checked=="true"){
+      state.order.push(e);
     }
-    dispatch({ type: ADDCHECKPRODUCT, payload: state.checkproduct });
-    localStorage.setItem("state", JSON.stringify(state));
-    console.log(check);
   };
 
+const onListOrder =(v)=>{
+
+}
+console.log(check)
   return (
     <section>
       <div className="row">
@@ -97,66 +109,7 @@ const Cart = () => {
                               <hr className="my-4" />
                               {state.cart.map((v, k) => {
                                 return (
-                                  <div
-                                    key={k}
-                                    className="row mb-4 d-flex justify-content-between align-items-center"
-                                  >
-                                    <div className="col-md-1 col-lg-1 col-xl-1 d-flex">
-                                      <Checkbox
-                                        onChange={(e) => onChange(e, v)}
-                                      ></Checkbox>
-                                    </div>
-                                    <div className="col-md-2 col-lg-2 col-xl-2 checkcart">
-                                      <img
-                                        src={v.thumbnail}
-                                        className="img-fluid rounded-3"
-                                        alt="Cotton T-shirt"
-                                      />
-                                    </div>
-                                    <div className="col-md-3 col-lg-3 col-xl-3">
-                                      <h6 className="text-muted">{v.name}</h6>
-                                      <h6 className="text-black mb-0">
-                                        {v.color}
-                                      </h6>
-                                    </div>
-
-                                    <div className="col-md-3 col-lg-3 col-xl-1 d-flex">
-                                      <Button
-                                        shape="circle"
-                                        onClick={() => handleDecrement(v.id)}
-                                      >
-                                        -
-                                      </Button>
-                                      <span className="quanty"> {v.qty} </span>
-
-                                      <Button
-                                        shape="circle"
-                                        onClick={() => handleIncrement(v.id)}
-                                      >
-                                        +
-                                      </Button>
-                                    </div>
-                                    <div className="col-md-2 col-lg-2 col-xl-2 offset-lg-1">
-                                      <h6 className="mb-0">
-                                        {(v.finalprice * v.qty).toLocaleString(
-                                          "vi",
-                                          { style: "currency", currency: "VND" }
-                                        )}
-                                      </h6>
-                                    </div>
-                                    <div className="col-md-1 col-lg-1 col-xl-1 text-end">
-                                      <Space>
-                                        <Button
-                                          type="text"
-                                          onClick={() => {
-                                            removeCart(v);
-                                          }}
-                                        >
-                                          <DeleteOutlined />
-                                        </Button>
-                                      </Space>
-                                    </div>
-                                  </div>
+                                  <CardCart product={v}/>
                                 );
                               })}
                               <hr className="my-4" />

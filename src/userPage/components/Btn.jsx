@@ -4,7 +4,7 @@ import React from 'react';
 
 
 
-const Btn = ({text}) => {
+const Btn = ({text,onClick}) => {
     const buttonstyle = {  
         color: "white",  
         backgroundColor: "#DABAAD",  
@@ -16,7 +16,7 @@ const Btn = ({text}) => {
         
       }; 
     return (
-        <Button style={buttonstyle}>
+        <Button style={buttonstyle} onClick={onClick}>
              {text}
         </Button>
     );
