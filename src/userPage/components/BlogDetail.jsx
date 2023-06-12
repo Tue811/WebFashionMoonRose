@@ -156,6 +156,10 @@ const BlogDetail = () => {
   const [avatar, setAvatar] = useState("");
   const [title, setTitle] = useState("");
   const [par1, setPart1] = useState("");
+  const [par2, setPar2] = useState("");
+  const [par3, setPar3] = useState("");
+  const [par4, setPar4] = useState("");
+  const [par5, setPar5] = useState("");
   const [pic1, setPic1] = useState("");
   const [des, setDes] = useState("");
 
@@ -175,6 +179,11 @@ const BlogDetail = () => {
         setTitle(e.title);
         setPart1(e.par1);
         setPic1(e.picture1);
+        setPar2(e.par2);
+        setPar3(e.par3);
+        setPar4(e.par4);
+        setPar5(e.par5);
+
       }
     });
   }, [idblog, blogs]);
@@ -209,30 +218,10 @@ const BlogDetail = () => {
               <div className="col-1"></div>
               <div className="col-10">
                 <p className="mb-4">
-                  Ai, trừ khi bạn phải được chuộc lại, tất cả đức tính, mọi đức
-                  tính, tất cả những sự thật khen ngợi cho sa mạc. Nhưng người
-                  đã lắng nghe, vì họ có thể, bảo vệ ý kiến của họ. Tất cả các
-                  stoics đều được cho là tuyệt vời, không phải là nguyên nhân
-                  của Zenoni, đã được.
+                  {par2}
                 </p>
                 <p className="mb-4">
-                  Đối với họ sau đó chuyển đổi bạn, xin vui lòng. Hai vị vua:
-                  Xây dựng Internet. Có một cái gì đó tự nó là sự tâng bốc, ngay
-                  cả khi không có phỉ báng. Một cái gì đó cho tiện ích của rất
-                  nhiều tiền. Có hai loại điều đó, anh ấy đã làm ba điều. Và
-                  nhiệm vụ mà công việc của trí tuệ là gì. Nhưng trong rõ ràng
-                  nhất là quá dài .quos trừ khi bạn phải khắc phục, mọi đức
-                  tính, mọi đức tính, tất cả vinh quang của tất cả những sự thật
-                  của sự khen ngợi cho sa mạc. Nhưng người đã lắng nghe, vì họ
-                  có thể, bảo vệ ý kiến của họ. Tất cả các stoics đều được cho
-                  là tuyệt vời, không phải là nguyên nhân của Zenoni, đã được.
-                  Người xứng đáng với một người đàn ông muốn trở thành một loại
-                  niềm vui. Đối với họ sau đó chuyển đổi bạn, xin vui lòng. Hai
-                  vị vua: Xây dựng Internet. Có một cái gì đó tự nó là sự tâng
-                  bốc, ngay cả khi không có phỉ báng. Lợi thế của số tiền là gì?
-                  Có hai loại điều đó, anh ấy đã làm ba điều. Và vai trò của
-                  công việc của trí tuệ là gì? Tuy nhiên, trong rõ ràng nhất
-                  chúng ta quá dài.
+                  {par3}
                 </p>
               </div>
             </div>
