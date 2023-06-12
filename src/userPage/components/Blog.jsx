@@ -44,31 +44,28 @@ const Blog = (props) => {
               </div>
             </div>
             {blogs.map((v, k) => {
-              // console.log(v);
-              return(
+              // console.log(v.id);
+              return (
                 <div className="row">
-                <ImgLeftStyle className="col-6 ">
-                  <div className="card">
-                    <NewpostLeft
-                      img
-                      src={v.avatar}
-                      // src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-1.2.1&amp;q=70&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=768&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjExNzczfQ"
-                    />
-                    
-                  </div>
-            
-                </ImgLeftStyle>
-                <TitleRightStyle className="col-6">
-                  Ngày đăng :<span>{v.date}</span>
-                  <h1 className="mb-5 mt-3">{v.title}</h1>
-                  <NavLink to={"/blogdetail"}>
-                    <Button type="text"> Xem bài viết</Button>
-                  </NavLink>
-                  <span> 3 phút đọc</span>
-                </TitleRightStyle>
-              </div>
-              )
-              
+                  <ImgLeftStyle className="col-6 ">
+                    <div className="card">
+                      <NewpostLeft
+                        img
+                        src={v.avatar}
+                        // src="https://images.unsplash.com/photo-1543163521-1bf539c55dd2?ixlib=rb-1.2.1&amp;q=70&amp;fm=jpg&amp;crop=entropy&amp;cs=tinysrgb&amp;w=768&amp;fit=max&amp;ixid=eyJhcHBfaWQiOjExNzczfQ"
+                      />
+                    </div>
+                  </ImgLeftStyle>
+                  <TitleRightStyle className="col-6">
+                    Ngày đăng :<span>{v.date}</span>
+                    <h1 className="mb-5 mt-3">{v.title}</h1>
+                    <NavLink to={"/blogdetail/" + v.id}>
+                      <Button type="text"> Xem bài viết</Button>
+                    </NavLink>
+                    <span> 3 phút đọc</span>
+                  </TitleRightStyle>
+                </div>
+              );
             })}
 
             {/* <div className="row">
