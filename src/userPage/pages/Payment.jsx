@@ -10,33 +10,58 @@ import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
 import { Space, Select } from "antd";
 import { Button, Checkbox, Form, Input } from "antd";
+import db from "../../db";
 
 const Payment = () => {
   const { state, dispatch } = React.useContext(UserContext);
+  // const [totals,setTotals]=useState(0)
+  const [form] = Form.useForm();
   var priceTransport = 20000;
   var totals = 0;
-  const removeCart = (product) => {
-    const new_cart = [];
-    state.cart.map((e) => {
-      if (e.id != product.id) {
-        new_cart.push(e);
-      }
-    });
-    state.cart = new_cart;
-    // setState(state);
-    dispatch({ type: "update_cart", payload: new_cart });
-    setTimeout(() => {
-      dispatch({ type: "hide_loading" });
-    }, 1000);
-    localStorage.setItem("state", JSON.stringify(state));
-    // updateCart();
-  };
   const onFinish = (values) => {
-    console.log("Success:", values);
+    // console.log("Success:", values);
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
+
+  let today = new Date();
+   let date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
+   let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+   let dateTime = date+' '+time;
+
+
+  const finalPrice = () => {
+    return state?.cart.reduce((total, item) => {
+      return total + item.finalprice * item.qty;
+    }, 0);
+  };
+
+  const onPayment = async () => {
+    const orderInfo={
+      ...form.getFieldsValue(),
+      price: totals,
+      status: 1,
+      date: dateTime,
+      // product : [...]
+  
+    }
+      // form.getFieldsValue()
+      form.validateFields()
+      console.log(form.getFieldValue())
+      console.log(orderInfo)  
+      const conn = db.collection("product");
+                await conn.add();
+                this.refresh();
+  };
+
+  // const formSubmit=async(e)=>{
+  //   e.preventDefault();
+  //   const conn = db.collection("product");
+  //           await conn.add(form_product);
+  //           this.refresh();
+  // };
+
   return (
     <section>
       <div className="row">
@@ -62,6 +87,7 @@ const Payment = () => {
                               </div>
                               <hr className="my-4" />
                               <Form
+                              form={form}
                                 name="basic"
                                 labelCol={{
                                   span: 8,
@@ -72,16 +98,13 @@ const Payment = () => {
                                 style={{
                                   maxWidth: 600,
                                 }}
-                                initialValues={{
-                                  remember: true,
-                                }}
-                                onFinish={onFinish}
+                                // onFinish={onFinish}
                                 onFinishFailed={onFinishFailed}
                                 autoComplete="off"
                               >
                                 <Form.Item
                                   label="Họ tên"
-                                  name="username"
+                                  name="name"
                                   rules={[
                                     {
                                       required: true,
@@ -91,10 +114,9 @@ const Payment = () => {
                                 >
                                   <Input />
                                 </Form.Item>
-
                                 <Form.Item
                                   label="Email"
-                                  name="email"
+                                  name="mail"
                                   rules={[
                                     {
                                       required: true,
@@ -104,7 +126,6 @@ const Payment = () => {
                                 >
                                   <Input />
                                 </Form.Item>
-
                                 <Form.Item
                                   label="Số điện thoại"
                                   name="phone"
@@ -118,7 +139,6 @@ const Payment = () => {
                                 >
                                   <Input />
                                 </Form.Item>
-
                                 <Form.Item
                                   label="Địa chỉ"
                                   name="address"
@@ -143,11 +163,11 @@ const Payment = () => {
                                   ]}
                                 >
                                   <Select
-                                    defaultValue="null"
+                                    defaultValue=""
                                     style={{ width: "100%" }}
                                     options={[
                                       {
-                                        value: "null",
+                                        value: "",
                                         label: "Chọn phương thức thanh toán",
                                       },
                                       {
@@ -192,7 +212,7 @@ const Payment = () => {
                                                                     <h5>{totals.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</h5>
                                                                 </h5> */}
                               {state.cart.map((v, k) => {
-                                console.log(v);
+                                // console.log(v);
                                 return (
                                   <div
                                     key={k}
@@ -235,19 +255,7 @@ const Payment = () => {
                                         )}
                                       </h6>
                                     </div>
-                                    <div className="col-md-1 col-lg-1 col-xl-1 text-end">
-                                      {/* <button type="button" className="btn btn-danger">X</button> */}
-                                      <Space>
-                                        <Button
-                                          type="text"
-                                          onClick={() => {
-                                            removeCart(v);
-                                          }}
-                                        >
-                                          x
-                                        </Button>
-                                      </Space>
-                                    </div>
+
                                   </div>
                                 );
                               })}
@@ -258,13 +266,9 @@ const Payment = () => {
                                 <h5 className="text-uppercase">
                                   Tổng thanh toán
                                 </h5>
-                                {state.cart.map((v, k) => {
-                                  totals += v.finalprice * v.qty;
-                                  // console.log(totals);
-                                })}
                                 {/* <h5>{(totals + priceTransport).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</h5> */}
                                 <h5>
-                                  {totals.toLocaleString("vi", {
+                                  {finalPrice().toLocaleString("vi", {
                                     style: "currency",
                                     currency: "VND",
                                   })}
@@ -275,6 +279,7 @@ const Payment = () => {
                                 type="button"
                                 className="btn btn-dark btn-block btn-lg"
                                 data-mdb-ripple-color="dark"
+                                onClick={() => onPayment()}
                               >
                                 Thanh toán
                               </button>

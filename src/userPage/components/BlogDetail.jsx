@@ -155,7 +155,7 @@ const BlogDetail = () => {
   const [blogs, setBlogs] = useState([]);
   const [avatar, setAvatar] = useState("");
   const [title, setTitle] = useState("");
-  const [part1, setPart1] = useState("");
+  const [par1, setPart1] = useState("");
   const [pic1, setPic1] = useState("");
   const [des, setDes] = useState("");
 
@@ -173,7 +173,7 @@ const BlogDetail = () => {
       if (e.id === idblog) {
         setAvatar(e.avatar);
         setTitle(e.title);
-        setPart1(e.part1);
+        setPart1(e.par1);
         setPic1(e.picture1);
       }
     });
@@ -201,7 +201,7 @@ const BlogDetail = () => {
             <div className="row mt-5 mb-5">
               <div className="col-1"></div>
               <div className="col-10">
-                <p>{part1}</p>
+                <p>{par1}</p>
               </div>
             </div>
             <img className="mb-5" src={pic1} alt="Picture" />
