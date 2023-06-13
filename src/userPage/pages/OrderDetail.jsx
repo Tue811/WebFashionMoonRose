@@ -1,11 +1,32 @@
-import React from "react";
+import React ,{useState,useEffect} from "react";
 import { Steps } from "antd";
+import { useParams } from "react-router-dom";
+import { listOrder,listProducts } from "../services/productAction";
 
 const OrderDetail = () => {
+  const {idorder} = useParams()
+  const [orders, setOrders] = useState([]);
+  const [products, setProducts] = useState([]);
+
+  const order = orders.find((e) => e.id === idorder);
+  console.log(order)
+
+  const refresh = async () => {
+    const t = await listOrder();
+    const g = await listProducts();
+    setProducts(g);
+    setOrders(t);
+  };
+
+  useEffect(() => {
+    refresh();
+
+  }, []);
+
   return (
     <div>
       <Steps
-        current={3}
+        current={order?.status}
         items={[
           {
             title: "Đơn hàng đã đặt",
@@ -22,17 +43,69 @@ const OrderDetail = () => {
           {
             title: "Hoàn thành",
           },
+          {
+            title: "Đã hủy",
+          },
         ]}
       />
       <div>
         <h5>Thông tin nhận hàng</h5>
-        <b>Nguyễn Thị Bích Tuệ</b>
-        <p>Số điện thoại: 0322665986</p>
-        <p>Địa chỉ: 232 Thái Hà, Đống Đa Đống Đa, Hà Nội</p>
+        <b>{order?.name}</b>
+        <p>Số điện thoại: {order?.phone}</p>
+        <p>Địa chỉ: {order?.address}</p>
 
       </div>
       <div>
         <h5>Thông tin thanh toán</h5>
+        {order?.product.map((v, k) => (
+          products?.map((e)=>{
+            if(e.id == v.id){
+              return (
+                <div
+                  key={k}
+                  className="row mb-4 d-flex justify-content-between align-items-center"
+                >
+                  <div className="col-md-2 col-lg-2 col-xl-2">
+                    <img
+                      src={e?.thumbnail}
+                      className="img-fluid rounded-3"
+                      alt="Cotton T-shirt"
+                    />
+                  </div>
+                  <div className="col-md-4 col-lg-3 col-xl-3">
+                    <h6 className="text-muted">{e?.name}</h6>
+                    <h6 className="text-black mb-0">
+                      {v.color}
+                    </h6>
+                  </div>
+                  <div className="col-md-5 col-lg-5 col-xl-4 offset-lg-1">
+                    <h6 className="mb-0">
+                      {(e?.finalprice * e?.qty).toLocaleString(
+                        "vi",
+                        { style: "currency", currency: "VND" }
+                      )}
+                    </h6>
+                  </div>
+                </div>
+              );
+            }
+          })
+        ))}
+
+                              <hr className="my-4" />
+
+                              <div className="d-flex justify-content-between mb-5">
+                                <h5 className="text-uppercase">
+                                  Tổng thanh toán
+                                </h5>
+                                {/* <h5>{(totals + priceTransport).toLocaleString('vi', { style: 'currency', currency: 'VND' })}</h5> */}
+                                <h5>
+                                  {order?.price.toLocaleString("vi", {
+                                    style: "currency",
+                                    currency: "VND",
+                                  })}
+                                </h5>
+                              </div>
       </div>
     </div>
   );

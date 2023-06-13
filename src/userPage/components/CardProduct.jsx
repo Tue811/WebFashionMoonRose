@@ -8,36 +8,10 @@ import { UPDATECART } from "../contants/productsContants";
 const { Meta } = Card;
 const CartProduct = ({product}) => {
   const {state,dispatch} = React.useContext(UserContext);
-  // const addToCart=(product, index)=>{
-  //  // const cart=props.cart; 
-  //  //  cart.push(e)
-  //  //  console.log(props)
-  //  //  props.add_cart(cart)
-  //  // dispatch({type: ADDCART, payload: cart})
-  //  let check = false;
 
-  //        state.cart.map((e, index)=>{
-  //            if(e.index == index){
-  //                e.qty = e.qty+1;
-  //                check =  true;    
-  //            }
-  //            return e;
-  //        })
-  //        if(check== false){
-  //            product.qty = 1;
-  //            state.cart.push(product);
-  //        }
-  //        dispatch({type:"ADDCART",payload:state.cart});
-         
-  //        localStorage.setItem("state",JSON.stringify(state)); 
-  // }
+  console.log(state)
+  
   const addToCart = (product) => {
-    // const cart=props.cart;
-    //  cart.push(e)
-    //  console.log(props)
-    //  props.add_cart(cart)
-    // dispatch({type: ADDCART, payload: cart})
-    // console.log(product);
     let check = false;
     state.cart.map((e) => {
       if (e.id == product.id) {
