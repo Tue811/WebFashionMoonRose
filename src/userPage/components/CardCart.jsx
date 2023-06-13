@@ -19,15 +19,6 @@ import { Checkbox } from "antd";
 
 const CardCart = ({ product }) => {
   const { state, dispatch } = React.useContext(UserContext);
-  console.log("state", state.order);
-  //   const [cart, setCart] = useState([]);
-  const [check, setCheck] = useState(false);
-
-  const finalPrice = () => {
-    return state?.order.reduce((total, item) => {
-      return total + item.finalprice * item.qty;
-    }, 0);
-  };
 
   const removeCart = (product) => {
     const new_cart = [];
@@ -37,10 +28,8 @@ const CardCart = ({ product }) => {
       }
     });
     state.cart = new_cart;
-    // setState(state);
     dispatch({ type: UPDATECART, payload: new_cart });
     localStorage.setItem("state", JSON.stringify(state));
-    // updateCart();
   };
   const handleDecrement = (product) => {
     state.cart.map((e) => {
@@ -64,23 +53,12 @@ const CardCart = ({ product }) => {
     localStorage.setItem("state", JSON.stringify(state));
   };
 
-  //   console.log(check);
-
-  //   useEffect(() => {
-  //     setCart(state.cart);
-  //   }, [state.cart]);
-
   const onChange = (e) => {
-    // console.log(`checked = ${e.target.checked}`);
-    // console.log(e)
     if (e.target.checked) {
       dispatch({ type: PUSH_TO_ORDER, payload: product });
     } else {
       dispatch({ type: REMOVE_ORDER, payload: product?.id });
     }
-    // if(e.target.checked=="true"){
-    //   state.order.push(e);
-    // }
   };
   return (
     <div>

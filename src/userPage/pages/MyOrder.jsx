@@ -49,7 +49,6 @@ const MyOrder = () => {
   const navigate = useNavigate();
 
   const onClick = (e) => {
-    console.log("click ", e);
     setCurrent(e.key);
   };
 
@@ -105,7 +104,6 @@ const MyOrder = () => {
   // const collectionRef = db.firestore().collection("order");
   // const newDocRef = collectionRef.doc(); // Tạo một document mới mà không cung cấp ID
   // const newDocId = newDocRef.id;
-  // console.log(newDocId) // Lấy ID của document
               conn.update({
                   status:newStatus,
                   

@@ -9,7 +9,6 @@ const OrderDetail = () => {
   const [products, setProducts] = useState([]);
 
   const order = orders.find((e) => e.id === idorder);
-  console.log(order)
 
   const refresh = async () => {
     const t = await listOrder();

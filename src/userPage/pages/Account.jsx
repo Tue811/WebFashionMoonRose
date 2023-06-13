@@ -24,8 +24,6 @@ const Account = () => {
         setInfo(false)
         setChangepass(true)
     }
-
-    console.log(setInfo)
     return (
         <div>
         <section>

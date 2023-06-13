@@ -8,8 +8,6 @@ import { UPDATECART } from "../contants/productsContants";
 const { Meta } = Card;
 const CartProduct = ({product}) => {
   const {state,dispatch} = React.useContext(UserContext);
-
-  console.log(state)
   
   const addToCart = (product) => {
     let check = false;
@@ -35,7 +33,6 @@ const CartProduct = ({product}) => {
   const addToFavourite = (product, k) => {
     let check = false;
     state?.favourite?.map((e, index) => {
-      console.log(e);
       if (index == k) {
         e.qty = e.qty + 1;
         check = true;

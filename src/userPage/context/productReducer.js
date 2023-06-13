@@ -21,7 +21,6 @@ function userReducer(state = initialState, action) {
       return { ...state, product: action.payload };
 
     case ADDCART: {
-      // console.log(action)
       return {
         ...state,
         cart: state.cart,
@@ -36,7 +35,6 @@ function userReducer(state = initialState, action) {
     }
 
     case PUSH_TO_ORDER: {
-      console.log("action", action);
       const order = [...state.order, action.payload];
       return {
         ...state,
@@ -48,7 +46,6 @@ function userReducer(state = initialState, action) {
     case REMOVE_ORDER: {
       const order = [...state.order];
       const index = order.findIndex((item) => item?.id === action.payload);
-      console.log("payload", order);
 
       if (index !== -1) {
         order.splice(index, 1);
@@ -59,7 +56,6 @@ function userReducer(state = initialState, action) {
       };
     }
     case NULL_ORDER:{
-      console.log(123)
       return {
         ...state,
         order: []

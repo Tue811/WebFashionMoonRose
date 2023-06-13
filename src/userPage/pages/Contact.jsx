@@ -27,7 +27,6 @@ const Contact = () => {
   };
 
   const onFinish = (values) => {
-    console.log(values);
   };
     return (
         <ContactLayout>

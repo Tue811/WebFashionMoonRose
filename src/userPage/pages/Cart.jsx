@@ -18,10 +18,8 @@ import CardCart from "../components/CardCart";
 const Cart = (props) => {
   const { state, dispatch } = React.useContext(UserContext);
   const [cart, setCart] = useState([]);
-  const [check, setCheck] = useState(false);
 
   var priceTransport = 20000;
-  var totals = 0;
 
   const finalPrice = () => {
     return state?.order.reduce((total, item) => {
@@ -29,55 +27,10 @@ const Cart = (props) => {
     }, 0);
   };
 
-  const removeCart = (product) => {
-    const new_cart = [];
-    state.cart.map((e) => {
-      if (e.id != product.id) {
-        new_cart.push(e);
-      }
-    });
-    state.cart = new_cart;
-    // setState(state);
-    dispatch({ type: UPDATECART, payload: new_cart });
-    localStorage.setItem("state", JSON.stringify(state));
-    // updateCart();
-  };
-  const handleDecrement = (product) => {
-    state.cart.map((e) => {
-      if (e.id === product) {
-        e.qty = e.qty - 1;
-      }
-      return e;
-    });
-    dispatch({ type: UPDATECART, payload: state.cart });
-    localStorage.setItem("state", JSON.stringify(state));
-  };
-
-  const handleIncrement = (product) => {
-    state.cart.map((e) => {
-      if (e.id === product) {
-        e.qty = e.qty + 1;
-      }
-      return e;
-    });
-    dispatch({ type: UPDATECART, payload: state.cart });
-    localStorage.setItem("state", JSON.stringify(state));
-  };
-
   useEffect(() => {
     setCart(state.cart);
   }, [state.cart]);
 
-  const onChange = (e) => {
-    console.log(`checked = ${e.target.checked}`);
-    console.log(e);
-    if (e.target.checked == "true") {
-      state.order.push(e);
-    }
-  };
-
-  const onListOrder = (v) => {};
-  console.log(check);
   return (
     <section>
       <div className="row">
@@ -104,7 +57,6 @@ const Cart = (props) => {
                               <hr className="my-4" />
 
                               {state.cart.map((v, k) => {
-                                // console.log(v);
                                 return <CardCart product={v} />;
                               })}
                               <hr className="my-4" />

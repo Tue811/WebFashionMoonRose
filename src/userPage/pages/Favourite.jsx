@@ -25,18 +25,10 @@ const Favourite = ({ product }) => {
             }
         });
         state.favourite = new_favourite;
-        // setState(state);
         dispatch({ type: UPDATECART, payload: new_favourite });
         localStorage.setItem("state", JSON.stringify(state));
-        // updateCart();
     };
     const addToCart = (product) => {
-        // const cart=props.cart;
-        //  cart.push(e)
-        //  console.log(props)
-        //  props.add_cart(cart)
-        // dispatch({type: ADDCART, payload: cart})
-        // console.log(product);
         let check = false;
         state.cart?.map((e) => {
             if (e?.id === product?.id) {
@@ -72,7 +64,6 @@ const Favourite = ({ product }) => {
                     <hr className="my-4" />
 
                     {state.favourite.map((v, k) => {
-                        // console.log(v);
                         return (
                             <div
                                 key={k}

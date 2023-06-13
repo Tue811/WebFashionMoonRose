@@ -93,7 +93,8 @@ const getListCategories =async()=>{
               return(
                 <SlideItem key={k} style={{
                   background: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${e.thumbnail})`,
-                  backgroundSize:"100% "
+                  backgroundSize:"100% 130%",
+                  height: 300
                }}>
                  {e.name}
                </SlideItem>
