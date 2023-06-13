@@ -1,4 +1,4 @@
-import React,{useEffect, useState}from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import { Button, Space } from "antd";
 import DeleteOutlined from "@ant-design/icons";
@@ -10,13 +10,18 @@ import {
 } from "../styles/cartStyle";
 import { Link } from "react-router-dom";
 import UserContext from "../context/UserContext";
-import { UPDATECART } from "../contants/productsContants";
+import {
+  PUSH_TO_ORDER,
+  REMOVE_ORDER,
+  UPDATECART,
+} from "../contants/productsContants";
 import { Checkbox } from "antd";
 
-const CardCart = ({product}) => {
-    const { state, dispatch } = React.useContext(UserContext);
-//   const [cart, setCart] = useState([]);
-  const [check,setCheck]=useState(false)
+const CardCart = ({ product }) => {
+  const { state, dispatch } = React.useContext(UserContext);
+  console.log("state", state.order);
+  //   const [cart, setCart] = useState([]);
+  const [check, setCheck] = useState(false);
 
   const finalPrice = () => {
     return state?.order.reduce((total, item) => {
@@ -59,30 +64,20 @@ const CardCart = ({product}) => {
     localStorage.setItem("state", JSON.stringify(state));
   };
 
-  
+  //   console.log(check);
 
-//   useEffect(() => {
-//     setCart(state.cart);
-//   }, [state.cart]);
-
-useEffect(()=>{
-    if(check){
-        state.order.push(product);
-    }
-    else{
-        const index = state.order.findIndex((item) => item.id === product.id);
-        if (index !== -1) {
-            state.order.splice(index,1);
-        }
-    }
-},[check])
-
-console.log(state)
+  //   useEffect(() => {
+  //     setCart(state.cart);
+  //   }, [state.cart]);
 
   const onChange = (e) => {
     // console.log(`checked = ${e.target.checked}`);
     // console.log(e)
-    setCheck(e.target.checked)
+    if (e.target.checked) {
+      dispatch({ type: PUSH_TO_ORDER, payload: product });
+    } else {
+      dispatch({ type: REMOVE_ORDER, payload: product?.id });
+    }
     // if(e.target.checked=="true"){
     //   state.order.push(e);
     // }
@@ -94,9 +89,7 @@ console.log(state)
         className="row mb-4 d-flex justify-content-between align-items-center"
       >
         <div className="col-md-1 col-lg-1 col-xl-1 d-flex">
-          <Checkbox
-            onChange={onChange}
-          ></Checkbox>
+          <Checkbox onChange={onChange} />
         </div>
         <div className="col-md-2 col-lg-2 col-xl-2 checkcart">
           <img
