@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
-import { Button, Space, Checkbox } from "antd";
-import { Link } from "react-router-dom";
-import UserContext from "../context/UserContext";
-import { UPDATECART, ADDCHECKPRODUCT } from "../contants/productsContants";
-import { DeleteOutlined } from "@ant-design/icons";
+import { Button, Space } from "antd";
+import DeleteOutlined from "@ant-design/icons";
 import {
   RightStyle,
   LeftStyle,
   ContentStyle,
   SelectStyle,
 } from "../styles/cartStyle";
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
+import UserContext from "../context/UserContext";
+import { UPDATECART } from "../contants/productsContants";
+import { Checkbox } from "antd";
 import CardCart from "../components/CardCart";
 // import type { CheckboxChangeEvent } from 'antd/es/checkbox';
 
-const Cart = () => {
+const Cart = (props) => {
   const { state, dispatch } = React.useContext(UserContext);
   const [cart, setCart] = useState([]);
   const [check,setCheck]=useState(false)
@@ -32,7 +32,7 @@ const Cart = () => {
   const removeCart = (product) => {
     const new_cart = [];
     state.cart.map((e) => {
-      if (e.id !== product.id) {
+      if (e.id != product.id) {
         new_cart.push(e);
       }
     });
@@ -42,26 +42,25 @@ const Cart = () => {
     localStorage.setItem("state", JSON.stringify(state));
     // updateCart();
   };
-
   const handleDecrement = (product) => {
-    const updatedCart = state.cart.map((e) => {
+    state.cart.map((e) => {
       if (e.id === product) {
         e.qty = e.qty - 1;
       }
       return e;
     });
-    dispatch({ type: UPDATECART, payload: updatedCart });
+    dispatch({ type: UPDATECART, payload: state.cart });
     localStorage.setItem("state", JSON.stringify(state));
   };
 
   const handleIncrement = (product) => {
-    const updatedCart = state.cart.map((e) => {
+    state.cart.map((e) => {
       if (e.id === product) {
         e.qty = e.qty + 1;
       }
       return e;
     });
-    dispatch({ type: UPDATECART, payload: updatedCart });
+    dispatch({ type: UPDATECART, payload: state.cart });
     localStorage.setItem("state", JSON.stringify(state));
   };
 
@@ -107,7 +106,9 @@ console.log(check)
                                 </h6>
                               </div>
                               <hr className="my-4" />
+
                               {state.cart.map((v, k) => {
+                                // console.log(v);
                                 return (
                                   <CardCart product={v}/>
                                 );
@@ -137,13 +138,16 @@ console.log(check)
                               <div className="d-flex justify-content-between mb-4">
                                 <h5 className="">Tổng tiền</h5>
                                 <h5>
-                                  {state.cart?.map((v, k) => {
+                                  {state.cart.map((v, k) => {
                                     totals += v.finalprice * v.qty;
+                                    // console.log(totals);
                                   })}
-                                  {totals.toLocaleString("vi", {
-                                    style: "currency",
-                                    currency: "VND",
-                                  })}
+                                  <h5>
+                                    {totals.toLocaleString("vi", {
+                                      style: "currency",
+                                      currency: "VND",
+                                    })}
+                                  </h5>
                                 </h5>
                               </div>
                               <hr className="my-4" />
@@ -156,8 +160,27 @@ console.log(check)
                                 </div>
                               </div>
 
+                              {/* <div className="mb-4 pb-2">
+                                <h5 className=" mb-3">
+                                  Áp mã giảm giá vận chuyển
+                                </h5>
+
+                                <select className="form-select form-select-lg mb-3">
+                                  <option selected>Mã giảm 15k</option>
+                                </select>
+                              </div> */}
+
                               <div className="mb-5">
-                                <div className="form-outline"></div>
+                                <div className="form-outline">
+                                  {/* <select className="form-select form-select-lg mb-3">
+                                    <option selected>Mã giảm giá 20k</option>
+                                    <option value="1">One</option>
+                                    <option value="2">Two</option>
+                                    <option value="3">Three</option>
+                                  </select> */}
+                                  {/* <input type="text" id="form3Examplea2" className="form-control form-control-lg" /> */}
+                                  {/* <label className="form-label" for="form3Examplea2">Enter your code</label> */}
+                                </div>
                               </div>
 
                               <hr className="my-4" />
