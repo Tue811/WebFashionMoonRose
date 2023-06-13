@@ -7,7 +7,10 @@ export const HeaderLayout=styled(Header)`
     color: #333333;
     height: max-content;
     padding-top: 20px;
-    z-index: 1;
+    top: 0;
+    position: fixed;
+    width: 100%;
+    z-index: 2;
     a{
         padding: 20px 20px;
         color: #333333;

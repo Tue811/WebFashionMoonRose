@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { PlusOutlined, HeartOutlined } from "@ant-design/icons";
 import UserContext from "../context/UserContext";
 import { UPDATECART } from "../contants/productsContants";
+import { RateProduct } from "../styles/homepageStyle";
 const { Meta } = Card;
 const CartProduct = ({product}) => {
   const {state,dispatch} = React.useContext(UserContext);
@@ -76,7 +77,7 @@ const CartProduct = ({product}) => {
           }}
         >
           <b>{product.name}</b>
-          <Rate
+          <RateProduct
             disabled
             defaultValue={2.5}
             style={{

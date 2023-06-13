@@ -3,11 +3,11 @@ import db from "../../db"
 import { ADDCART } from "../contants/productsContants";
 
 
-export const listProducts = async ()=>{
+export const listProducts = async (limit)=>{
   const products = [];
   try {
       const conn = db.collection("product");
-      const data = await conn.get();
+      const data = await conn.limit(limit).get();
       data.docs.map(item=>{
           const d = item.data();// day moi la du lieu cua tung product
           d.id = item.id;// nap them id vao san pham

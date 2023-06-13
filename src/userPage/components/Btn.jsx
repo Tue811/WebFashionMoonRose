@@ -13,6 +13,7 @@ const Btn = ({text,onClick}) => {
         height:"auto",
         fontSize:"16px",
         letterSpacing: "1px",
+        marginRight:"20px"
         
       }; 
     return (

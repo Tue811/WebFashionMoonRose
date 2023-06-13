@@ -9,7 +9,7 @@ const Footer = () => {
        <Col span={6}> <img src={logoRemoveBg} /></Col>
       <Row>
         <FooterItem span={6}>
-        <h5>Thông tin</h5>
+        <h5 style={{fontWeight:"bold"}}>Thông tin</h5>
           <h4>Moon Rose</h4>
           <p>
             CÔNG TY TNHH THỜI TRANG MR <br />
@@ -20,30 +20,30 @@ const Footer = () => {
           </p>
         </FooterItem>
         <FooterItem span={6}>
-          <h5>Hỗ trợ khách hàng</h5>
-          <Link to="/">Hướng dẫn mua hàng</Link>
+          <h5 style={{fontWeight:"bold"}}>Hỗ trợ khách hàng</h5>
+          <Link style={{textDecoration:"none"}} to="/">Hướng dẫn mua hàng</Link>
           <br />
-          <Link to="/">Đăng ký tài khoản</Link>
+          <Link style={{textDecoration:"none"}} to="/">Đăng ký tài khoản</Link>
           <br />
-          <Link to="/">Chính sách giao hàng</Link>
+          <Link style={{textDecoration:"none"}} to="/">Chính sách giao hàng</Link>
           <br />
-          <Link to="/">Chính sách đổi trả hoàn tiền</Link>
+          <Link style={{textDecoration:"none"}} to="/">Chính sách đổi trả hoàn tiền</Link>
           <br />
-          <Link to="/">Ưu đãi sinh nhật khách hàng</Link>
+          <Link style={{textDecoration:"none"}} to="/">Ưu đãi sinh nhật khách hàng</Link>
           <br />
         </FooterItem>
         <FooterItem span={6}>
-          <h5>Liên hệ</h5>
-          <Link to="/">Giới thiệu</Link>
+          <h5 style={{fontWeight:"bold"}}>Liên hệ</h5>
+          <Link style={{textDecoration:"none"}} to="/">Giới thiệu</Link>
           <br />
-          <Link to="/">Tin tức</Link>
+          <Link style={{textDecoration:"none"}} to="/">Tin tức</Link>
           <br />
-          <Link to="/">Hệ thống của hàng</Link>
+          <Link style={{textDecoration:"none"}} to="/">Hệ thống của hàng</Link>
           <br />
-          <Link to="/">Trợ giúp</Link>
+          <Link  style={{textDecoration:"none"}} to="/">Trợ giúp</Link>
         </FooterItem>
         <FooterItem span={6}>
-          <h5>Theo dõi</h5>
+          <h5 style={{fontWeight:"bold"}}>Theo dõi</h5>
           <Link to="/">
             <i className="fa-brands fa-facebook"></i>
           </Link>

@@ -40,8 +40,12 @@ const Products = () => {
     console.log('checked = ', checkedValues);
   };
 
+//   const filteredProducts = products.filter((product) =>
+//   product.name.toLowerCase().includes(searchQuery.toLowerCase())
+// );
+
   return (
-    <div style={{padding:"0 50px 100px 50px"}}>
+    <div style={{padding:"100px 50px 100px 50px"}}>
 
             {categories.map((v) => {
               return (

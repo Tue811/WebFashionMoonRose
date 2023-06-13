@@ -32,7 +32,7 @@ const Cart = (props) => {
   }, [state.cart]);
 
   return (
-    <section>
+    <section style={{paddingTop:"100px"}}>
       <div className="row">
         <div className="col-1"></div>
         <div className="col-10">

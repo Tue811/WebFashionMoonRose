@@ -76,7 +76,8 @@ const ProductDetail = () => {
   };
 
   return (
-    <div>
+    <div style={{
+    }}>
       <ProductDetailComponent>
         <Row>
           <Col span={12} style={{ textAlign: "center" }}>
@@ -89,18 +90,19 @@ const ProductDetail = () => {
               <Color>
                 <b>Màu sắc : </b>
                 <br />
-                <i className="fa-solid fa-circle"></i>
-                <i className="fa-solid fa-circle"></i>
-                <i className="fa-solid fa-circle"></i>
-                <i className="fa-solid fa-circle"></i>
+                <i className="fa-solid fa-circle" style={{ color: "#bc2a32", fontSize: "24px" }}></i>
+                <i className="fa-solid fa-circle" style={{ color: "#773d49", fontSize: "24px" }}></i>
+                <i className="fa-solid fa-circle" style={{ color: "#3a6380", fontSize: "24px" }}></i>
+                <i className="fa-solid fa-circle" style={{ color: "#eedcd8", fontSize: "24px" }}></i>
+                <i className="fa-solid fa-circle" style={{ color: "#000000", fontSize: "24px" }}></i>
               </Color>
               <Size>
                 <b>Chọn kích cỡ : </b> <br />
-                <ValueSize value="XS" disabled />
-                <ValueSize value="S" disabled />
-                <ValueSize value="M" disabled />
-                <ValueSize value="L" disabled />
-                <ValueSize value="XL" disabled />
+                <ValueSize value="XS" />
+                <ValueSize value="S"  />
+                <ValueSize value="M"  />
+                <ValueSize value="L"  />
+                <ValueSize value="XL"  />
               </Size>
               <Price>
                 <b>Giá</b>
@@ -115,7 +117,7 @@ const ProductDetail = () => {
                 text="Thêm vào giỏ hàng"
                 onClick={() => addToCart(product)}
               ></Btn>
-              <Btn text="Mua ngay" onClick={() => onPayment(id)}></Btn>
+              <Btn text="Mua ngay" onClick={() => onPayment(id)} ></Btn>
             </ProductInfo>
           </Col>
         </Row>

@@ -15,7 +15,7 @@ export const AboutLayout = styled.div`
         color: #DABAAD;
     }
     text-align: center;
-    padding: 0 50px;
+    padding: 100px 50px;
 `;
 
 export const AboutUsLayout = styled.div`

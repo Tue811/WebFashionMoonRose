@@ -30,6 +30,7 @@ import { listProducts, listCategories, addCart } from "../services/productAction
 import db from '../../db'
 import { ADDCART } from "../contants/productsContants";
 import UserContext from '../context/UserContext'
+import { ArrowRightOutlined } from '@ant-design/icons';
 
 // // Import Swiper styles
 
@@ -96,7 +97,10 @@ const getListCategories =async()=>{
                   backgroundSize:"100% 130%",
                   height: 300
                }}>
-                 {e.name}
+                 <Link to="/products" style={{
+                  textDecoration:"none",
+                  color:"white"
+                 }}>{e.name}</Link>
                </SlideItem>
               )
              })
@@ -123,7 +127,7 @@ const getListCategories =async()=>{
              }
             </Row>
           </ListProducts>
-          <Link to="/">View All</Link>
+          <Link to="/products" style={{textDecoration:"none",fontSize:24,marginLeft:"50%",color:"#333"}}> <ArrowRightOutlined />View All</Link>
         </Collection>
         <Sales>
           <h3>Khuyến Mãi</h3>

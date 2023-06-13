@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import styled from 'styled-components'
 
 export const ContentStyle = styled.div`
-  padding: 45px 45px 0px 45px;
+  padding: 100px 45px 0px 45px;
     border-radius: 20px;
     text-align: center;
     /* height: 800px; */

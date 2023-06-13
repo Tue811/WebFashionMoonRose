@@ -49,7 +49,9 @@ const Favourite = ({ product }) => {
         localStorage.setItem("state", JSON.stringify(state));
     };
     return (
-        <div className="row">
+        <div className="row" style={{
+            paddingTop: 100
+        }}>
             <div className="col-2"></div>
             <div className="col-8">
                 <div className="p-5">

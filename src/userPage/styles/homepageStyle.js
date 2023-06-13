@@ -1,10 +1,11 @@
+import { Rate } from "antd";
 import { Content } from "antd/es/layout/layout";
 import Slider from "react-slick";
 import styled from "styled-components";
 import { SwiperSlide } from "swiper/react";
 
 export const ContentLayout = styled(Content)`
-    padding:0 50px;
+    padding:100px 50px;
     color: #333333;
     @font-face {
   font-family: 'ginger';
@@ -114,3 +115,14 @@ font-size: 24px;
 font-weight: bold;
 `
 
+export const RateProduct = styled(Rate)`
+.ant-rate-star.ant-rate-star-full{
+margin: 0 !important;
+margin-inline-end:0;
+
+}
+.ant-rate-star.ant-rate-star-zero{
+  margin: 0 !important;
+margin-inline-end:0;
+}
+`

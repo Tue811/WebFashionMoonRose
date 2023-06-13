@@ -5,7 +5,8 @@ import {
   REMOVE_ORDER,
   UPDATECART,
   UPDATEORDER,
-  NULL_ORDER
+  NULL_ORDER,
+  VALUESEARCH
 } from "../contants/productsContants";
 import { db } from "../../db";
 
@@ -60,6 +61,9 @@ function userReducer(state = initialState, action) {
         ...state,
         order: []
       };
+    }
+    case VALUESEARCH:{
+
     }
 
     default:

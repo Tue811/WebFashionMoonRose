@@ -2,6 +2,7 @@ import { Form } from "antd";
 import styled from "styled-components";
 
 export const ContactLayout = styled.div`
+margin-top: 80px;
     padding-top: 50px;
     position: relative;
     height: 1100px;

@@ -126,7 +126,7 @@ const MyOrder = () => {
   return (
     <div
       style={{
-        padding: "50px ",
+        padding: "150px 50px ",
       }}
     >
       <div className="col">

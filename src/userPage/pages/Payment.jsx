@@ -6,9 +6,9 @@ import {
   ContentStyle,
   SelectStyle,
 } from "../styles/cartStyle";
-import { Link,useNavigate  } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import UserContext from "../context/UserContext";
-import { Space, Select,Modal } from "antd";
+import { Space, Select, Modal } from "antd";
 import { Button, Checkbox, Form, Input } from "antd";
 import db from "../../db";
 import { listOrder } from "../services/productAction";
@@ -19,7 +19,7 @@ const Payment = () => {
   // const history = useHistory();
   const navigate = useNavigate();
   const [onPopup, setOnPopup] = useState(false);
-  const [orderId,setOrderId]=useState("")
+  const [orderId, setOrderId] = useState("");
   const [form] = Form.useForm();
   const onFinish = (values) => {
     console.log("Success:", values);
@@ -52,10 +52,10 @@ const Payment = () => {
     form.validateFields();
     const conn = db.collection("order");
     const docRef = await conn.add(orderInfo);
-    setOrderId(docRef.id) ; // Get the ID of the newly created document
+    setOrderId(docRef.id); // Get the ID of the newly created document
     dispatch({ type: NULL_ORDER });
     form.resetFields();
-    setOnPopup(true)
+    setOnPopup(true);
     this.refresh();
   };
 
@@ -67,16 +67,16 @@ const Payment = () => {
   });
 
   const handleOk = () => {
-    navigate("/order")
+    navigate("/order");
     setOnPopup(false);
   };
   const handleCancel = () => {
-    navigate("/")
+    navigate("/");
     setOnPopup(false);
   };
 
   return (
-    <section>
+    <section style={{ paddingTop: "100px" }}>
       <div className="row">
         <div className="col-1"></div>
         <div className="col-10">
@@ -297,13 +297,24 @@ const Payment = () => {
           </div>
         </div>
       </div>
-      {
-  onPopup && <Modal title="Đặt hàng thành công" open={onPopup} onOk={handleOk} onCancel={handleCancel} okText="Tìm kiếm đơn hàng của bạn"
-  cancelText="Trang chủ">
-  <p>Mã đơn hàng của bạn là: <b>{orderId}</b></p>
-
-</Modal>
-}
+      {onPopup && (
+        <Modal
+          title="Đặt hàng thành công"
+          open={onPopup}
+          onOk={handleOk}
+          onCancel={handleCancel}
+          okText="Tìm kiếm đơn hàng của bạn"
+          cancelText="Trang chủ"
+          style={{
+            marginTop:"50px",
+            fontSize:"20px"
+          }}
+        >
+          <p>
+            Mã đơn hàng của bạn là: <b>{orderId}</b>
+          </p>
+        </Modal>
+      )}
     </section>
   );
 };
