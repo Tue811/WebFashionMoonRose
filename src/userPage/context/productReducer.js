@@ -1,6 +1,8 @@
 import {
   ADDCART,
   LISTPRODUCTS,
+  PUSH_TO_ORDER,
+  REMOVE_ORDER,
   UPDATECART,
   UPDATEORDER,
 } from "../contants/productsContants";
@@ -9,7 +11,7 @@ import { db } from "../../db";
 const initialState = {
   product: [],
   cart: [],
-  order:[],
+  order: [],
 };
 
 function userReducer(state = initialState, action) {
@@ -30,6 +32,30 @@ function userReducer(state = initialState, action) {
 
     case UPDATEORDER: {
       return { ...state, order: state.order, isLoading: true };
+    }
+
+    case PUSH_TO_ORDER: {
+      console.log("action", action);
+      const order = [...state.order, action.payload];
+      return {
+        ...state,
+        order,
+        isloading: true,
+      };
+    }
+
+    case REMOVE_ORDER: {
+      const order = [...state.order];
+      const index = order.findIndex((item) => item?.id === action.payload);
+      console.log("payload", order);
+
+      if (index !== -1) {
+        order.splice(index, 1);
+      }
+      return {
+        ...state,
+        order,
+      };
     }
 
     default:

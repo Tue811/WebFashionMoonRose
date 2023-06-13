@@ -4,3 +4,5 @@ export const ADDCART="ADDCART";
 export const ADDFAVOURITE = "ADDFAVOURITE"
 export const UPDATECART = "UPDATECART"
 export const UPDATEORDER="UPDATEORDER"
+export const PUSH_TO_ORDER = "PUSH_TO_ORDER"
+export const REMOVE_ORDER = "REMOVE_ORDER"

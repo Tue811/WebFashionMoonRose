@@ -32,7 +32,7 @@ const Payment = () => {
 
 
   const finalPrice = () => {
-    return state?.cart.reduce((total, item) => {
+    return state?.order.reduce((total, item) => {
       return total + item.finalprice * item.qty;
     }, 0);
   };
@@ -211,7 +211,7 @@ const Payment = () => {
                                                                     })}
                                                                     <h5>{totals.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</h5>
                                                                 </h5> */}
-                              {state.cart.map((v, k) => {
+                              {state.order.map((v, k) => {
                                 // console.log(v);
                                 return (
                                   <div

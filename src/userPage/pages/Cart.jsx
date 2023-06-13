@@ -138,16 +138,11 @@ console.log(check)
                               <div className="d-flex justify-content-between mb-4">
                                 <h5 className="">Tổng tiền</h5>
                                 <h5>
-                                  {state.cart.map((v, k) => {
-                                    totals += v.finalprice * v.qty;
-                                    // console.log(totals);
+                                  
+                                  {finalPrice().toLocaleString("vi", {
+                                    style: "currency",
+                                    currency: "VND",
                                   })}
-                                  <h5>
-                                    {totals.toLocaleString("vi", {
-                                      style: "currency",
-                                      currency: "VND",
-                                    })}
-                                  </h5>
                                 </h5>
                               </div>
                               <hr className="my-4" />
@@ -190,7 +185,7 @@ console.log(check)
                                   Tổng thanh toán
                                 </h5>
                                 <h5>
-                                  {(totals + priceTransport).toLocaleString(
+                                  {(finalPrice() + priceTransport).toLocaleString(
                                     "vi",
                                     { style: "currency", currency: "VND" }
                                   )}
