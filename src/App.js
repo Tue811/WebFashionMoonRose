@@ -52,7 +52,7 @@ function App() {
           <Route path="/account" element={<Account />} />
           <Route path="/payment" element={<Payment />} />
           <Route path="/order" element={<MyOrder />} />
-          <Route path="/orderdetail" element={<OrderDetail />} />
+          <Route path="/orderdetail/:idorder" element={<OrderDetail />} />
           <Route path="/favourite" element={<Favourite />} />
 
         </Routes>

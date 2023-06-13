@@ -18,7 +18,7 @@ import CardCart from "../components/CardCart";
 const Cart = (props) => {
   const { state, dispatch } = React.useContext(UserContext);
   const [cart, setCart] = useState([]);
-  const [check,setCheck]=useState(false)
+  const [check, setCheck] = useState(false);
 
   var priceTransport = 20000;
   var totals = 0;
@@ -64,24 +64,20 @@ const Cart = (props) => {
     localStorage.setItem("state", JSON.stringify(state));
   };
 
-  
-
   useEffect(() => {
     setCart(state.cart);
   }, [state.cart]);
 
   const onChange = (e) => {
     console.log(`checked = ${e.target.checked}`);
-    console.log(e)
-    if(e.target.checked=="true"){
+    console.log(e);
+    if (e.target.checked == "true") {
       state.order.push(e);
     }
   };
 
-const onListOrder =(v)=>{
-
-}
-console.log(check)
+  const onListOrder = (v) => {};
+  console.log(check);
   return (
     <section>
       <div className="row">
@@ -109,9 +105,7 @@ console.log(check)
 
                               {state.cart.map((v, k) => {
                                 // console.log(v);
-                                return (
-                                  <CardCart product={v}/>
-                                );
+                                return <CardCart product={v} />;
                               })}
                               <hr className="my-4" />
 
@@ -138,7 +132,6 @@ console.log(check)
                               <div className="d-flex justify-content-between mb-4">
                                 <h5 className="">Tổng tiền</h5>
                                 <h5>
-                                  
                                   {finalPrice().toLocaleString("vi", {
                                     style: "currency",
                                     currency: "VND",
@@ -185,10 +178,12 @@ console.log(check)
                                   Tổng thanh toán
                                 </h5>
                                 <h5>
-                                  {(finalPrice() + priceTransport).toLocaleString(
-                                    "vi",
-                                    { style: "currency", currency: "VND" }
-                                  )}
+                                  {(
+                                    finalPrice() + priceTransport
+                                  ).toLocaleString("vi", {
+                                    style: "currency",
+                                    currency: "VND",
+                                  })}
                                 </h5>
                               </div>
                               <Link to={"/payment"}>

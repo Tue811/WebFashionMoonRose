@@ -5,6 +5,7 @@ import {
   REMOVE_ORDER,
   UPDATECART,
   UPDATEORDER,
+  NULL_ORDER
 } from "../contants/productsContants";
 import { db } from "../../db";
 
@@ -55,6 +56,13 @@ function userReducer(state = initialState, action) {
       return {
         ...state,
         order,
+      };
+    }
+    case NULL_ORDER:{
+      console.log(123)
+      return {
+        ...state,
+        order: []
       };
     }
 

@@ -40,30 +40,6 @@ const HomePage = (props) => {
   const prependNumber = useRef(1);
   const [products, setProducts]=useState([]);
   const [categories, setCategories] = useState([])
-  // Create array with 500 slides
-  // const [slides, setSlides] = useState(
-  //   Array.from({ length: 500 }).map((_, index) => `Slide ${index + 1}`)
-  // );
-
-  // const prepend = () => {
-  //   setSlides([
-  //     `Slide ${prependNumber.current - 2}`,
-  //     `Slide ${prependNumber.current - 1}`,
-  //     ...slides,
-  //   ]);
-  //   prependNumber.current = prependNumber.current - 2;
-  //   swiperRef.slideTo(swiperRef.activeIndex + 2, 0);
-  // };
-
-  // const append = () => {
-  //   setSlides([...slides, 'Slide ' + ++appendNumber.current]);
-  // };
-
-  // const slideTo = (index) => {
-  //   swiperRef.slideTo(index - 1, 0);
-  // };
-
-// const dispatch=useDispatch();
 
 useEffect(()=>{
   refresh();
@@ -109,15 +85,9 @@ const getListCategories =async()=>{
             autoplay={{ delay: 3000 }}
             onSwiper={setSwiperRef}
             slidesPerView={3}
-            // centeredSlides={true}
             spaceBetween={30}
             modules={[Autoplay]}
-            // pagination={{
-            //   type: "fraction",
-            // }}
-            // navigation={true}
           >
-            {/* {slides.map((slideContent, index) => ( */}
            {
              categories.map((e,k)=>{
               return(
@@ -144,11 +114,6 @@ const getListCategories =async()=>{
             
                   <CartProduct 
                   product={e}
-                  // name={e.name}
-                  // price={e.finalprice}
-                  // src={e.thumbnail}
-                  // addToCart={()=>addToCart(e,k)}
-                  // addToFavourite={()=>addToFavourite(e,k)}
                   />
                 
                 </Col>

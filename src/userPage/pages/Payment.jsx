@@ -6,30 +6,34 @@ import {
   ContentStyle,
   SelectStyle,
 } from "../styles/cartStyle";
-import { Link } from "react-router-dom";
+import { Link,useNavigate  } from "react-router-dom";
 import UserContext from "../context/UserContext";
-import { Space, Select } from "antd";
+import { Space, Select,Modal } from "antd";
 import { Button, Checkbox, Form, Input } from "antd";
 import db from "../../db";
+import { listOrder } from "../services/productAction";
+import { NULL_ORDER } from "../contants/productsContants";
 
 const Payment = () => {
   const { state, dispatch } = React.useContext(UserContext);
-  // const [totals,setTotals]=useState(0)
+  // const history = useHistory();
+  const navigate = useNavigate();
+  const [onPopup, setOnPopup] = useState(false);
+  const [orderId,setOrderId]=useState("")
   const [form] = Form.useForm();
-  var priceTransport = 20000;
-  var totals = 0;
   const onFinish = (values) => {
-    // console.log("Success:", values);
+    console.log("Success:", values);
   };
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
   };
 
   let today = new Date();
-   let date = today.getDate()+'-'+(today.getMonth()+1)+'-'+today.getFullYear();
-   let time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-   let dateTime = date+' '+time;
-
+  let date =
+    today.getDate() + "-" + (today.getMonth() + 1) + "-" + today.getFullYear();
+  let time =
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  let dateTime = date + " " + time;
 
   const finalPrice = () => {
     return state?.order.reduce((total, item) => {
@@ -38,29 +42,38 @@ const Payment = () => {
   };
 
   const onPayment = async () => {
-    const orderInfo={
+    const orderInfo = {
       ...form.getFieldsValue(),
-      price: totals,
-      status: 1,
+      price: finalPrice(),
+      status: "1",
       date: dateTime,
-      // product : [...]
-  
-    }
-      // form.getFieldsValue()
-      form.validateFields()
-      console.log(form.getFieldValue())
-      console.log(orderInfo)  
-      const conn = db.collection("product");
-                await conn.add();
-                this.refresh();
+      product: listOrderProducts,
+    };
+    form.validateFields();
+    const conn = db.collection("order");
+    const docRef = await conn.add(orderInfo);
+    setOrderId(docRef.id) ; // Get the ID of the newly created document
+    dispatch({ type: NULL_ORDER });
+    form.resetFields();
+    setOnPopup(true)
+    this.refresh();
   };
 
-  // const formSubmit=async(e)=>{
-  //   e.preventDefault();
-  //   const conn = db.collection("product");
-  //           await conn.add(form_product);
-  //           this.refresh();
-  // };
+  const listOrderProducts = state.order?.map((item) => {
+    return {
+      id: item.id,
+      qty: item.qty,
+    };
+  });
+
+  const handleOk = () => {
+    navigate("/order")
+    setOnPopup(false);
+  };
+  const handleCancel = () => {
+    navigate("/")
+    setOnPopup(false);
+  };
 
   return (
     <section>
@@ -87,7 +100,7 @@ const Payment = () => {
                               </div>
                               <hr className="my-4" />
                               <Form
-                              form={form}
+                                form={form}
                                 name="basic"
                                 labelCol={{
                                   span: 8,
@@ -98,7 +111,7 @@ const Payment = () => {
                                 style={{
                                   maxWidth: 600,
                                 }}
-                                // onFinish={onFinish}
+                                onFinish={onFinish}
                                 onFinishFailed={onFinishFailed}
                                 autoComplete="off"
                               >
@@ -202,17 +215,7 @@ const Payment = () => {
                                 Thanh toán
                               </h3>
                               <hr className="my-4" />
-
-                              {/* <h5 className="">Tổng tiền</h5> */}
-                              {/* <h5>
-                                                                    {state.cart.map((v, k) => {
-                                                                        totals += v.finalprice * v.qty;
-                                                                        // console.log(totals);
-                                                                    })}
-                                                                    <h5>{totals.toLocaleString('vi', { style: 'currency', currency: 'VND' })}</h5>
-                                                                </h5> */}
                               {state.order.map((v, k) => {
-                                // console.log(v);
                                 return (
                                   <div
                                     key={k}
@@ -255,7 +258,6 @@ const Payment = () => {
                                         )}
                                       </h6>
                                     </div>
-
                                   </div>
                                 );
                               })}
@@ -295,6 +297,13 @@ const Payment = () => {
           </div>
         </div>
       </div>
+      {
+  onPopup && <Modal title="Đặt hàng thành công" open={onPopup} onOk={handleOk} onCancel={handleCancel} okText="Tìm kiếm đơn hàng của bạn"
+  cancelText="Trang chủ">
+  <p>Mã đơn hàng của bạn là: <b>{orderId}</b></p>
+
+</Modal>
+}
     </section>
   );
 };

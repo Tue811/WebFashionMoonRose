@@ -2,29 +2,22 @@
 import db from "../../db"
 import { ADDCART } from "../contants/productsContants";
 
-// export function ListProducts(payload) {
-//   console.log(987)
-//   return {
-//     type: LISTPRODUCTS,
-//     payload: payload,
-//   };
-// }
 
-export const listProducts =async (limit) => {
-  
-    try {
-      const collectionRef = db.collection('product');
-      const snapshot = await collectionRef.limit(limit).get();
-      const data = snapshot.docs.map((doc) => doc.data());
-      return data;
+export const listProducts = async ()=>{
+  const products = [];
+  try {
+      const conn = db.collection("product");
+      const data = await conn.get();
+      data.docs.map(item=>{
+          const d = item.data();// day moi la du lieu cua tung product
+          d.id = item.id;// nap them id vao san pham
+          products.push(d);                 
+      });
+  } catch (error) {
       
-      // dispatch({ type: 'LISTPRODUCTS', payload: data });
-    } catch (error) {
-      // dispatch({ type: 'FETCH_DATA_FAILURE', payload: error.message });
-      return [];
-    }
-
-};
+  }
+  return products;
+}
 
 export const listCategories =async () => {
   
@@ -41,21 +34,7 @@ export const listCategories =async () => {
   }
 
 };
-// export const listBlog =async () => {
-  
-//   try {
-//     const collectionRef = db.collection('blog');
-//     const snapshot = await collectionRef.get();
-//     const data = snapshot.docs.map((doc) => doc.data());
-//     return data;
-    
-//     // dispatch({ type: 'LISTPRODUCTS', payload: data });
-//   } catch (error) {
-//     // dispatch({ type: 'FETCH_DATA_FAILURE', payload: error.message });
-//     return [];
-//   }
 
-// };
 export const listBlog = async ()=>{
   const blogs = [];
   try {
@@ -69,15 +48,23 @@ export const listBlog = async ()=>{
   } catch (error) {
       
   }
-  // console.log(blogs);
 
   return blogs;
   
 }
 
-// export const addCart =(payload)=>{
-//   return{
-//     type: ADDCART,
-//     payload: payload
-//   }
-// }
+export const listOrder = async ()=>{
+  const order = [];
+  try {
+      const conn = db.collection("order");
+      const data = await conn.get();
+      data.docs.map(item=>{
+          const d = item.data();// day moi la du lieu cua tung product
+          d.id = item.id;// nap them id vao san pham
+          order.push(d);                 
+      });
+  } catch (error) {
+      
+  }
+  return order;
+}
