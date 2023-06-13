@@ -208,7 +208,7 @@ const BlogDetail = () => {
                 style={{
                   width: "100%",
                   height: "600",
-                  padding: "50px 20px 0 0",
+                  padding: "50px 50px 0 0",
                 }}
               />
             </TitleImgStyle>
