@@ -46,7 +46,7 @@ const Products = () => {
             {categories.map((v) => {
               return (
                 <div key={v.name}>
-                  <h4 style={{paddingTop:30}}>{v.name}</h4>
+                  <h4 style={{paddingTop:30,fontWeight:900}}>{v.name}</h4>
                   <Row>
                     {products.map((e, k) => {
                       if (e.type === v.name) {
