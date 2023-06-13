@@ -46,8 +46,8 @@ const Blog = (props) => {
             {blogs.map((v, k) => {
               // console.log(v.id);
               return (
-                <div className="row">
-                  <ImgLeftStyle className="col-6 ">
+                <div className="row main">
+                  <ImgLeftStyle className="col-6 main-child">
                     <div className="card">
                       <NewpostLeft
                         img
@@ -56,7 +56,7 @@ const Blog = (props) => {
                       />
                     </div>
                   </ImgLeftStyle>
-                  <TitleRightStyle className="col-6">
+                  <TitleRightStyle className="col-6 main-child">
                     Ngày đăng :<span>{v.date}</span>
                     <h1 className="mb-5 mt-3">{v.title}</h1>
                     <NavLink to={"/blogdetail/" + v.id}>

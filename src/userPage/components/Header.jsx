@@ -2,7 +2,12 @@ import React, { useState, useContext } from "react";
 // import { useSelector } from "react-redux";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../../assets/img/logowebclothing.png";
-import { HeaderLayout, Logo, NavHeader,DropdownStyle } from "../styles/headerStyle";
+import {
+  HeaderLayout,
+  Logo,
+  NavHeader,
+  DropdownStyle,
+} from "../styles/headerStyle";
 import { Col, Row, Badge, Input, Dropdown, Button } from "antd";
 import {
   ShoppingCartOutlined,
@@ -110,19 +115,18 @@ const Header = () => {
               <HeartOutlined style={{ fontSize: "25px" }} />
             </Badge>
           </NavLink>
-          
-            <Dropdown
+
+          <Dropdown
             menu={{
               items,
             }}
-            placement="bottomLeft" className="dropd"
+            placement="bottomLeft"
+            className="dropd"
           >
             <Button style={{ border: "none" }}>
               <UserOutlined style={{ fontSize: "25px" }} />
             </Button>
           </Dropdown>
-          
-          
         </Col>
         {showSearch && (
           <Input
@@ -141,4 +145,3 @@ const Header = () => {
 };
 
 export default Header;
-

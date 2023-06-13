@@ -13,6 +13,7 @@ export const HeaderLayout=styled(Header)`
         color: #333333;
         font-weight: 600;
     }
+    
 `;
 
 export const Logo=styled(Col)`
