@@ -161,7 +161,7 @@ const BlogDetail = () => {
   const [par4, setPar4] = useState("");
   const [par5, setPar5] = useState("");
   const [pic1, setPic1] = useState("");
-  const [des, setDes] = useState("");
+  const [date, setDate] = useState("");
 
   useEffect(() => {
     refresh();
@@ -183,7 +183,7 @@ const BlogDetail = () => {
         setPar3(e.par3);
         setPar4(e.par4);
         setPar5(e.par5);
-
+        setDate(e.date);
       }
     });
   }, [idblog, blogs]);
@@ -194,13 +194,23 @@ const BlogDetail = () => {
         <TitleHeadStyle className="row mb-5">
           <div className="col-6">
             <TitleStyle className="box-title">
-              <h1 className="mb-5">{title}</h1>
+              Ngày đăng :<span>{date}</span>
+              <h1 className="mb-5 mt-3">{title}</h1>
               <p>2 phút đọc</p>
             </TitleStyle>
           </div>
           <div className="col-6 right">
             <TitleImgStyle>
-              <img className="mb-5" src={avatar} alt="Avatar" />
+              <img
+                className="mb-5"
+                src={avatar}
+                alt="Avatar"
+                style={{
+                  width: "100%",
+                  height: "600",
+                  padding: "50px 20px 0 0",
+                }}
+              />
             </TitleImgStyle>
           </div>
         </TitleHeadStyle>
@@ -213,16 +223,12 @@ const BlogDetail = () => {
                 <p>{par1}</p>
               </div>
             </div>
-            <img className="mb-5" src={pic1} alt="Picture" />
+            <img className="mb-5" src={pic1} alt="Picture"  />
             <div className="row">
               <div className="col-1"></div>
               <div className="col-10">
-                <p className="mb-4">
-                  {par2}
-                </p>
-                <p className="mb-4">
-                  {par3}
-                </p>
+                <p className="mb-4">{par2}</p>
+                <p className="mb-4">{par3}</p>
               </div>
             </div>
             <Button className="mt-4" type="text">
