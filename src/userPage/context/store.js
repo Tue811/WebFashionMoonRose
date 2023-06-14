@@ -2,6 +2,7 @@ const store ={
     cart:[],
     favourite:[],
     order:[],
+    searchValue:"",
 
 }
 

@@ -16,11 +16,14 @@ import {
 } from "@ant-design/icons";
 import UserContext from "../context/UserContext";
 import Btn from "./Btn";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
   const [navbar, setNavbar] = useState(false);
   const [showSearch, setShowSearch] = useState(false);
   const { state, dispatch } = useContext(UserContext);
+  const [searchValue, setSearchValue] = useState(""); // State to store the search value
+  const navigate = useNavigate();
 
   const handleSearch = () => {
     setShowSearch(!showSearch);
@@ -41,6 +44,21 @@ const Header = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+
+  const handleKeyPress = (e) => {
+    if (e.key === "Enter") {
+      // When Enter key is pressed
+      dispatch({
+        type: "VALUESEARCH",
+        payload: searchValue,
+      });
+      navigate("/products");
+    }
+  };
+
+  const handleInputChange = (e) => {
+    setSearchValue(e.target.value);
+  };
 
   const items = [
     {
@@ -128,13 +146,16 @@ const Header = () => {
 
         {showSearch && (
           <Input
-            placeholder="Tìm kiếm"
+            placeholder="Tìm kiếm sản phẩm"
             prefix={<SearchOutlined />}
             style={{
               borderRadius: "30px",
               padding: "16px",
               zIndex: 1,
             }}
+            value={searchValue}
+            onChange={handleInputChange}
+            onKeyPress={handleKeyPress}
           />
         )}
       </Row>

@@ -14,6 +14,7 @@ const initialState = {
   product: [],
   cart: [],
   order: [],
+  searchValue:"",
 };
 
 function userReducer(state = initialState, action) {
@@ -63,7 +64,10 @@ function userReducer(state = initialState, action) {
       };
     }
     case VALUESEARCH:{
-
+      return {
+        ...state,
+        searchValue: action.payload,
+      };
     }
 
     default:

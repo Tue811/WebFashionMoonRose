@@ -13,6 +13,7 @@ import UserContext from "../context/UserContext";
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
+  const { state, dispatch } = React.useContext(UserContext);
 
   useEffect(() => {
     refresh();
@@ -30,29 +31,21 @@ const Products = () => {
     setCategories(c);
   };
 
-  const nameCategories= categories.map((e)=>{
-    return e.name
-  })
+  const filteredProducts = products.filter((product) =>
+  product.name.toLowerCase().includes(state?.searchValue.toLowerCase())
+);
 
-  console.log(nameCategories);
-
-  const onChange = (checkedValues) => {
-    console.log('checked = ', checkedValues);
-  };
-
-//   const filteredProducts = products.filter((product) =>
-//   product.name.toLowerCase().includes(searchQuery.toLowerCase())
-// );
+console.log(filteredProducts)
 
   return (
     <div style={{padding:"100px 50px 100px 50px"}}>
 
             {categories.map((v) => {
               return (
-                <div key={v.name}>
+                <div key={v?.name}>
                   <h4 style={{paddingTop:30,fontWeight:900}}>{v.name}</h4>
                   <Row>
-                    {products.map((e, k) => {
+                    {filteredProducts.map((e, k) => {
                       if (e.type === v.name) {
                         return (
                           <Col key={k} span={6}>
